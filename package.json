@@ -1,0 +1,31 @@
+{
+  "name": "canvas-course-sync",
+  "version": "1.0.0",
+  "description": "Markdown to Canvas pages with generated course overview",
+  "main": "sync.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "node sync.js --dry-run",
+    "publish": "node sync.js",
+    "theme": "node build-theme.js",
+    "pdf": "node convert-pdf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "juice": "^12.2.0",
+    "markdown-it": "^15.0.3",
+    "markdown-it-attrs": "^5.0.1",
+    "markdown-it-container": "^4.0.0",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.63.0",
+    "shiki": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

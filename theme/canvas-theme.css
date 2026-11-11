@@ -1,0 +1,62 @@
+/* ==========================================================================
+   ti_ course template — SUB-ACCOUNT THEME CSS (Theme Editor > Upload > CSS file)
+   Only what inline styles cannot do. Every selector starts with a ti_ class,
+   so courses that do not use the template are not affected.
+   If this file is missing (mobile app, other sub-account), pages still render:
+   the overview simply floats beside the content without sticking.
+   ========================================================================== */
+
+/* Overview stays in view while scrolling */
+.ti_page > .ti_overview {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+/* Smooth jumps to sections, only on template pages, only if the user allows motion */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.ti_page) { scroll-behavior: smooth; }
+}
+
+/* Leave breathing room above a section when jumping to its anchor */
+.ti_section { scroll-margin-top: 16px; }
+
+/* Hover / keyboard focus (pseudo-classes cannot be inlined) */
+.ti_overview_link:hover,
+.ti_overview_link:focus-visible { text-decoration: underline; background-color: #e3f1f1; }
+.ti_overview_summary:hover { color: #0d5c5a; }
+.ti_overview_pdf:hover,
+.ti_overview_pdf:focus-visible { text-decoration: underline; background-color: #e3f1f1; }
+.ti_section a:hover,
+.ti_block_link:hover { text-decoration-thickness: 2px; }
+.ti_page a:focus-visible,
+.ti_page summary:focus-visible { outline: 2px solid #0d5c5a; outline-offset: 2px; }
+.ti_block_oefening .ti_block_link:hover { text-decoration: underline; }
+.ti_block_quiz .ti_block_link:hover,
+.ti_block_quiz .ti_block_link:focus-visible { background-color: #d4f0ef !important; }
+
+/* Long code lines scroll inside the block on small screens instead of wrapping awkwardly */
+@media (max-width: 600px) {
+  .ti_code, .ti_output { white-space: pre !important; overflow-x: auto; font-size: 13px !important; }
+}
+
+/* Narrow screens: overview above the content. !important beats the inlined float/width/margin. */
+@media (max-width: 1000px) {
+  .ti_page > .ti_overview {
+    float: none !important;
+    width: auto !important;
+    position: static;
+    max-height: none;
+    margin-bottom: 24px;
+  }
+  .ti_page > .ti_content { margin-left: 0 !important; }
+}
+
+/* Print / Save as PDF: no overview, full-width content, keep sections together */
+@media print {
+  .ti_page > .ti_overview,
+  .ti_section .ti_top { display: none !important; }
+  .ti_page > .ti_content { margin-left: 0 !important; max-width: none !important; }
+  .ti_codeblock, .ti_table, .ti_callout { break-inside: avoid; }
+}

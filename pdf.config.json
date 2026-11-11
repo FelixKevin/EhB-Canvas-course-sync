@@ -1,0 +1,22 @@
+{
+  "title": "Netwerken",
+  "subtitle": "Cursusmateriaal en oefeningen",
+  "author": "Kevin",
+  "organisation": "Bachelor Toegepaste Informatica · Erasmushogeschool Brussel",
+  "date": "auto",
+  "edition": "",
+  "logo": "assets/ehb-logo.png",
+  "footer": "{title} · {author}",
+  "runningHeader": true,
+  "headerPrefix": "{title}",
+  "tocTitle": "Inhoud",
+  "tocExercises": false,
+  "hideBlocks": [
+    "github",
+    "oefening"
+  ],
+  "quizNote": "Antwoorden en uitleg krijg je in de online quiz op Canvas.",
+  "pageSize": "A4",
+  "accent": "#E30613",
+  "fileNote": "bestand in Canvas: {name}"
+}

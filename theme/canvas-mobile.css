@@ -1,0 +1,29 @@
+/* ==========================================================================
+   ti_ course template — MOBILE APP CSS
+   Theme Editor > Upload > "Mobile app CSS file".
+   Applies only to page content in the Canvas Student/Teacher apps (not mobile browsers;
+   those get canvas-theme.css). Screens are always narrow there, so no media query:
+   the overview always stacks above the content. !important beats the inlined styles.
+   ========================================================================== */
+
+.ti_page > .ti_overview {
+  float: none !important;
+  width: auto !important;
+  margin-bottom: 20px;
+}
+
+.ti_page > .ti_content {
+  margin-left: 0 !important;
+  max-width: none !important;
+}
+
+/* Long lines scroll inside the code block instead of wrapping mid-token */
+.ti_code, .ti_output {
+  white-space: pre !important;
+  overflow-x: auto;
+  font-size: 13px !important;
+}
+
+/* Slightly tighter side margins on a phone */
+.ti_section p { padding: 0 14px !important; }
+.ti_codeblock, .ti_callout, .ti_table, .ti_block_quiz { margin-left: 14px !important; margin-right: 14px !important; }

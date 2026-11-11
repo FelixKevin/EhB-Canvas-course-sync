@@ -1,0 +1,122 @@
+{
+  "baseUrl": "https://canvas.ehb.be",
+  "courseId": 43147,
+  "contentDir": "content",
+  "template": "template.html",
+  "cssFile": "css/style.css",
+  "inlineCss": true,
+  "classPrefix": "ti_",
+  "sectionHeading": "h2",
+  "headingMap": {
+    "h2": "h3",
+    "h3": "h5",
+    "h4": "h6"
+  },
+  "backToTopText": "Terug naar boven",
+  "topId": "ti_top",
+  "tocTitle": "Cursusoverzicht",
+  "takeawayPrefix": "Dit betekent voor jou:",
+  "inlineCodeClass": "mono",
+  "code": {
+    "highlight": true,
+    "theme": "github-dark-default",
+    "background": "#0d1117",
+    "aliases": {
+      "js": "javascript",
+      "ts": "typescript",
+      "sh": "bash",
+      "shell": "bash",
+      "zsh": "bash",
+      "ps": "powershell",
+      "ps1": "powershell",
+      "cs": "csharp",
+      "c#": "csharp",
+      "py": "python",
+      "yml": "yaml",
+      "md": "markdown"
+    },
+    "outputLangs": [
+      "console",
+      "output",
+      "text",
+      "txt"
+    ],
+    "outputLabel": "Output",
+    "labels": {
+      "javascript": "JavaScript",
+      "typescript": "TypeScript",
+      "php": "PHP",
+      "bash": "Terminal",
+      "powershell": "PowerShell",
+      "sql": "SQL",
+      "html": "HTML",
+      "css": "CSS",
+      "json": "JSON",
+      "java": "Java",
+      "python": "Python",
+      "csharp": "C#",
+      "yaml": "YAML",
+      "xml": "XML",
+      "dockerfile": "Dockerfile",
+      "markdown": "Markdown",
+      "blade": "Blade"
+    }
+  },
+  "callouts": [
+    "tip",
+    "info",
+    "warning"
+  ],
+  "externalLinksNewTab": true,
+  "files": {
+    "folder": "course-sync",
+    "usageRights": null,
+    "hidden": false
+  },
+  "quizzes": {
+    "enabled": true,
+    "headingPattern": "^Test jezelf\\b",
+    "assignmentGroup": "Test jezelf",
+    "omitFromFinalGrade": true,
+    "pointsPerQuestion": 1,
+    "shuffleChoices": true,
+    "multiAnswerScoring": "PartialScore",
+    "matchingScoring": "PartialDeep",
+    "instructions": "<p>Deze test telt niet mee voor je punten. Je kan hem zo vaak maken als je wil. Na het indienen zie je bij elke vraag of je antwoord juist is, met uitleg.</p>",
+    "metaText": "{n} vragen · telt niet mee · onbeperkt pogingen"
+  },
+  "blocks": {
+    "oefening": {
+      "logo": "assets/oefening.png",
+      "linkTarget": "_blank",
+      "stripParagraphs": true
+    },
+    "github": {
+      "logo": null,
+      "heading": "GitHub Repo",
+      "linkTarget": "_blank"
+    },
+    "jsfiddle": {
+      "logo": null,
+      "heading": "JSFiddle",
+      "linkTarget": "_blank"
+    },
+    "quiz": {
+      "logo": null,
+      "linkText": "Start de quiz",
+      "linkTarget": "_blank"
+    }
+  },
+  "extraTocGroups": [
+    {
+      "title": "Voorbeeldexamen",
+      "links": [
+        {
+          "title": "Voorbeeldexamen",
+          "href": "https://canvas.ehb.be/courses/43147/pages/voorbeeldexamen"
+        }
+      ]
+    }
+  ],
+  "pdfLinkTitle": "Download deze cursus (PDF)"
+}
