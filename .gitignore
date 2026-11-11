@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Secrets (keep .env.example tracked)
+.env
+.env.*
+!.env.example
+
+# Build output
+out/
+theme-upload/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Local Claude Code settings
+.claude/settings.local.json
+CLAUDE.md
+
+# Note: canvas-map.json is generated state but is committed on purpose (see README).
