@@ -101,27 +101,103 @@ Dit betekent voor jou: bij storingen of configuratievragen benoem je eerst de ro
 
 Theorie is mooi, maar een netwerk moet je aanraken. In deze sectie zet je een eenvoudig thuisnetwerk op en verifieer je of het werkt, met tools die je als developer sowieso nodig zult hebben.
 
-Het startpunt is je router. De meeste routers zijn bereikbaar via een webbrowser op het adres `192.168.1.1` of `192.168.0.1`, dit is het **standaard gateway-adres**, de toegang tot je netwerk van binnenuit (afhankelijk van je provider kan het wel zijn dat je via hun website je device moet beheren, bvb zoals bij Telenet). Log in met de gegevens die op de onderkant van je router staan (verander die nadien, de standaard wachtwoorden zijn publiek gekend).
+Het startpunt is je router. De meeste routers zijn bereikbaar via een webbrowser op het adres `192.168.1.1` of `192.168.0.1`, dit is het **standaard gateway-adres**, de toegang tot je netwerk van binnenuit. Log in met de gegevens die op de onderkant van je router staan.
+
+::: info
+**Info:** bij sommige providers, zoals Telenet, beheer je je modem via hun website of app in plaats van via `192.168.0.1`.
+:::
+
+::: warning
+**Let op:** verander het standaardwachtwoord van je router meteen na de eerste keer inloggen. De standaardwachtwoorden van de meeste routers zijn publiek gekend.
+:::
 
 Eenmaal ingelogd zie je het **dashboard** van je router: welke apparaten verbonden zijn, welke IP-adressen ze hebben, welk publiek IP-adres jouw verbinding heeft. Verken dit. Je ziet ook instellingen voor WiFi-netwerken (SSID en wachtwoord), DHCP (meer daarover in module 2) en firewall-regels.
 
-Om te testen of je netwerk werkt, gebruik je de terminal. Het commando `ping` stuurt een klein pakketje naar een adres en wacht op antwoord:
+### Testen met ping
+
+Om te testen of je netwerk werkt, gebruik je de terminal. Het commando `ping` stuurt een klein pakketje naar een adres en wacht op antwoord. Je stopt `ping` met <kbd>Ctrl</kbd> + <kbd>C</kbd>.
+
+#### Stap 1: je router
 
 ```bash
 ping 192.168.1.1
 ```
 
-Als je router reageert, werkt je lokale verbinding. Daarna test je of het internet bereikbaar is:
+```console
+PING 192.168.1.1 (192.168.1.1): 56 data bytes
+64 bytes from 192.168.1.1: icmp_seq=0 ttl=64 time=2.104 ms
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=1.873 ms
+```
+
+Als je router reageert, werkt je lokale verbinding.
+
+#### Stap 2: het internet
 
 ```bash
 ping 8.8.8.8
 ```
 
-(`8.8.8.8` is een publieke DNS-server van Google. Als die reageert, heb je verbinding met het internet. Reageert hij niet, maar je router wel? Dan is er een probleem tussen je router en je provider.)
+`8.8.8.8` is een [publieke DNS-server van Google](https://developers.google.com/speed/public-dns). Als die reageert, heb je verbinding met het internet. Reageert hij niet, maar je router wel? Dan is er een probleem tussen je router en je provider.
 
-Een tweede handig commando is `ipconfig` (Windows), `ip a` (Linux) of `ifconfig` (macOS). Dat toont je eigen IP-adres, je subnetmasker en je standaard gateway.
+### Je eigen configuratie bekijken
+
+Het commando om je eigen IP-adres, je subnetmasker en je standaard gateway te zien, verschilt per besturingssysteem:
+
+1. Windows: `ipconfig`
+2. Linux: `ip a`
+3. macOS: `ifconfig`
+
+Op Windows kan je in PowerShell ook een specifieke poort testen:
+
+```powershell
+Test-NetConnection 8.8.8.8 -Port 53
+```
 
 Dit betekent voor jou: als iets niet werkt, kijk je eerst naar je eigen configuratie voordat je de server of je code verdenkt.
+
+### Test jezelf 1.4 – Je thuisnetwerk
+
+```text
+Sectie: 1.4
+Type: meerkeuze
+Vraag: Wat test dit commando?
+Code:
+  ping 8.8.8.8
+Opties:
+  A. Of je verbinding hebt met het internet
+  B. Of je DNS werkt
+  C. Welk IP-adres je eigen computer heeft
+  D. Hoe snel je wifi is
+Juist: A
+Feedback A: Juist. `8.8.8.8` is een publiek IP-adres buiten je eigen netwerk (zie 1.4).
+Feedback B: Een IP-adres heeft geen DNS nodig. Ping een domeinnaam om DNS te testen (zie 1.6).
+Feedback C: Daarvoor gebruik je `ipconfig`, `ip a` of `ifconfig` (zie 1.4).
+Feedback D: `ping` meet de tijd tot een antwoord, niet de snelheid van je wifi (zie 1.5).
+Feedback bij juist antwoord: Goed gedaan.
+Feedback bij fout antwoord: Herlees het stuk over ping in 1.4.
+
+Sectie: 1.4
+Type: koppelen
+Vraag: Koppel elk besturingssysteem aan het commando dat je IP-adres toont.
+Paren:
+  Windows → `ipconfig`
+  Linux → `ip a`
+  macOS → `ifconfig`
+Afleiders:
+  `ping`
+Feedback: Zie de lijst in 1.4.
+
+Sectie: 1.4
+Type: numeriek
+Vraag: Een ping naar je router geeft `time=2.104 ms`. Rond af op één decimaal.
+Juist: 2,1 ± 0,05 | 2,1
+Feedback: 2,104 afgerond op één decimaal is 2,1 (zie 1.4).
+
+Sectie: 1.4
+Type: invullen
+Vraag: Het standaard gateway-adres van de meeste routers is [[192.168.1.1|192.168.0.1]].
+Feedback: Beide adressen komen veel voor (zie 1.4).
+```
 
 ---
 
@@ -156,6 +232,17 @@ Troubleshooten doe je systematisch, van binnenuit naar buiten.
 **Stap 4: Werkt DNS?** Ping een domeinnaam (`ping google.com`). Als `8.8.8.8` werkt maar `google.com` niet reageert, dan is je DNS kapot. Je hebt internet, maar je computer kan domeinnamen niet omzetten naar IP-adressen.
 
 **Stap 5: Werkt de specifieke dienst?** Gebruik `traceroute` (Linux/macOS) of `tracert` (Windows) om te zien waar packets vastlopen op hun weg naar de bestemming.
+
+```text
+traceroute to example.com (93.184.215.14), 30 hops max
+ 1  192.168.1.1   1.9 ms
+ 2  10.24.0.1     8.4 ms
+ 3  * * *
+```
+
+Elke regel is een tussenstation. Sterretjes betekenen dat dat station niet antwoordt. Dat is niet altijd een fout: veel routers negeren traceroute bewust.
+
+Nog niet zeker welke stap faalt? Begin opnieuw bij [je eigen configuratie](#1_4).
 
 Dit stappenplan redt je van veel frustratie. De fout zit altijd ergens in die keten. Als je meteen begint te zoeken bij de server van je app, terwijl het probleem in je eigen DNS-instellingen zit, ben je uren kwijt.
 
@@ -231,6 +318,18 @@ Vraag: Hoeveel ms latency is aanvaardbaar naar je eigen router? Geef een waarde 
 Juist: 0 tot 5
 Feedback: Op je eigen LAN is de latency meestal enkele milliseconden (zie 1.4).
 ```
+
+---
+
+## Veilig experimenteren {.letop #veilig-experimenteren}
+
+Pas instellingen op je router alleen aan als je weet hoe je ze terugzet. Noteer vóór elke wijziging de oude waarde.
+
+::: warning
+**Let op:** zet de firewall van je router nooit uit om een probleem te testen. Je hele netwerk is dan bereikbaar vanaf het internet.
+:::
+
+Dit betekent voor jou: experimenteer op een testnetwerk of noteer elke wijziging, zodat je altijd terug kan.
 
 ::: oefening
 [Oefeningen Module 1](./module-1-oefeningen.md)

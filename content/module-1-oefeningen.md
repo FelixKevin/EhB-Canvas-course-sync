@@ -18,7 +18,9 @@ Voer `ping`{.keyword} uit naar je eigen router en noteer de gemiddelde latency.
 Lukt het niet? Volg het stappenplan uit [1.6](./module-1.md#1_6).
 :::
 
-## Oefening 1: Pingtabel
+## Oefening 1: Pingtabel {.easy}
+
+Download de [lege pingtabel](files/module-1/pingtabel.csv) en open ze in een spreadsheet.
 
 ### Noteer je resultaten
 
@@ -44,4 +46,19 @@ if ($code === 0) {
 ```js
 const res = await fetch('https://example.com', { signal: AbortSignal.timeout(3000) });
 console.log(res.status);
+```
+
+::: jsfiddle
+[Probeer de fetch-code in JSFiddle](https://jsfiddle.net/)
+:::
+
+## Oefening 3: Thuisopdracht {.home}
+
+Teken je eigen thuisnetwerk: welke toestellen zijn verbonden met welk apparaat? Duid aan waar je LAN eindigt.
+
+```json
+{
+  "router": "192.168.1.1",
+  "toestellen": ["laptop", "telefoon", "printer"]
+}
 ```
