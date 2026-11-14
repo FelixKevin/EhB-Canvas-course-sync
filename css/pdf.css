@@ -333,15 +333,23 @@ body.ti_pdf {
 .ti_pdf_chapter .ti_section {
   border: 0;
   border-radius: 0;
+  box-shadow: none;
   padding: 0;
   margin: 0 0 18px 0;
 }
 .ti_pdf_chapter .ti_section.ti_intro { padding-top: 0; }
 
+/* Light section header (as in Canvas): accent stripe + coloured title, no banner */
 .ti_pdf_chapter .ti_section h3 {
-  border-radius: 0;
-  padding: 9px 14px;
   margin: 0 0 12px 0;
+  padding: 2px 0 2px 12px;
+}
+/* Variant headers keep their tint, square in print */
+.ti_pdf_chapter .ti_section h3.ti_easy, .ti_pdf_chapter .ti_section h3.ti_medium,
+.ti_pdf_chapter .ti_section h3.ti_hard, .ti_pdf_chapter .ti_section h3.ti_home,
+.ti_pdf_chapter .ti_section h3.ti_extra, .ti_pdf_chapter .ti_section h3.ti_letop {
+  border-radius: 0;
+  padding: 7px 12px;
 }
 
 .ti_pdf_chapter .ti_section h5,
@@ -371,12 +379,10 @@ body.ti_pdf {
   color: #ffffff;
 }
 
-/* Same left-to-right gradient on every title banner (an overlay, so the variants keep their own colour) */
-.ti_pdf_chapter .ti_section h3,
+/* Same left-to-right gradient on the remaining banners (section headers are light, no gradient) */
 .ti_pdf_toc_title,
 .ti_pdf_quiz_head {
   background-image: linear-gradient(110deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%);
 }
-.ti_pdf_chapter .ti_section h3.ti_easy { background-image: none; }
 
 .ti_pdf_filenote { font-size: 8.5pt; color: #5a6a73; }

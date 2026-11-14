@@ -26,4 +26,12 @@
 
 /* Slightly tighter side margins on a phone */
 .ti_section p { padding: 0 14px !important; }
+.ti_section h3, .ti_section h5, .ti_section h6, .ti_section ul, .ti_section ol,
 .ti_codeblock, .ti_callout, .ti_table, .ti_block_quiz { margin-left: 14px !important; margin-right: 14px !important; }
+.ti_table { width: calc(100% - 28px) !important; }
+
+/* Test jezelf: button below the title instead of beside it */
+.ti_block_quiz { display: block !important; width: auto !important; }
+.ti_block_quiz .ti_block_logo { display: block !important; float: left !important; }
+.ti_block_quiz .ti_block_body { display: block !important; overflow: hidden; }
+.ti_block_quiz .ti_block_action { display: block !important; width: auto !important; clear: both; text-align: left !important; padding: 10px 0 0 0 !important; }

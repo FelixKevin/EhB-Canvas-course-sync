@@ -34,11 +34,16 @@
 .ti_page summary:focus-visible { outline: 2px solid #0d5c5a; outline-offset: 2px; }
 .ti_block_oefening .ti_block_link:hover { text-decoration: underline; }
 .ti_block_quiz .ti_block_link:hover,
-.ti_block_quiz .ti_block_link:focus-visible { background-color: #d4f0ef !important; }
+.ti_block_quiz .ti_block_link:focus-visible { background-color: #0d5c5a !important; }
 
 /* Long code lines scroll inside the block on small screens instead of wrapping awkwardly */
 @media (max-width: 600px) {
   .ti_code, .ti_output { white-space: pre !important; overflow-x: auto; font-size: 13px !important; }
+  /* Test jezelf: button below the title instead of beside it */
+  .ti_block_quiz { display: block !important; width: auto !important; }
+  .ti_block_quiz .ti_block_logo { display: block !important; float: left !important; }
+  .ti_block_quiz .ti_block_body { display: block !important; overflow: hidden; }
+  .ti_block_quiz .ti_block_action { display: block !important; width: auto !important; clear: both; text-align: left !important; padding: 10px 0 0 0 !important; }
 }
 
 /* Narrow screens: overview above the content. !important beats the inlined float/width/margin. */

@@ -12,7 +12,11 @@
     "h3": "h5",
     "h4": "h6"
   },
-  "backToTopText": "Terug naar boven",
+  "backToTopText": "↑",
+  "backToTopLabel": "Terug naar boven",
+  "variantLabels": { "easy": "Makkelijk", "medium": "Gemiddeld", "hard": "Moeilijk", "home": "@Home", "extra": "Extra", "letop": "Let op" },
+  "figureLabel": "Figuur {n}.",
+  "calloutIcons": { "tip": "💡", "info": "ℹ️", "warning": "⚠️" },
   "topId": "ti_top",
   "tocTitle": "Cursusoverzicht",
   "takeawayPrefix": "Dit betekent voor jou:",
@@ -87,22 +91,22 @@
   },
   "blocks": {
     "oefening": {
-      "logo": "assets/oefening.png",
+      "logo": "assets/icons/oefening.svg",
       "linkTarget": "_blank",
       "stripParagraphs": true
     },
     "github": {
-      "logo": null,
+      "logo": "assets/icons/code.svg",
       "heading": "GitHub Repo",
       "linkTarget": "_blank"
     },
     "jsfiddle": {
-      "logo": null,
+      "logo": "assets/icons/fiddle.svg",
       "heading": "JSFiddle",
       "linkTarget": "_blank"
     },
     "quiz": {
-      "logo": null,
+      "logo": "assets/icons/quiz.svg",
       "linkText": "Start de quiz",
       "linkTarget": "_blank"
     }

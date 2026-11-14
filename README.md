@@ -68,9 +68,9 @@ tocLabel: Oefeningen            # link text when tocMode is page
 | Markdown | HTML |
 |---|---|
 | `# Title` | Not rendered; used as the Canvas page title |
-| `## 1.1 Wat is een variabele?` | `<div class="ti_section"><a id="1_1"></a><h3>… <a class="ti_top">Terug naar boven</a></h3>` |
+| `## 1.1 Wat is een variabele?` | `<div class="ti_section"><a id="1_1"></a><h3>… <a class="ti_top" aria-label="Terug naar boven">↑</a></h3>`: a light header (accent stripe, teal title) with a round back-to-top arrow on the right (`backToTopText`, `backToTopLabel`) |
 | `## Titel {#eigen-id}` | Same, with your own anchor id |
-| `## Oefening 3 {.hard}` | Variant header: `.letop`, `.easy`, `.hard`, `.home` (prefixed automatically) |
+| `## Oefening 3 {.hard}` | Variant header: `.easy`, `.medium`, `.hard`, `.home`, `.extra`, `.letop` (prefixed automatically). Tinted header, thick stripe in its own colour and a text label (`variantLabels`, e.g. MOEILIJK), so the level is not shown by colour alone |
 | `### Subtitel` | `<h5>` (see `headingMap`) |
 | `---` | Dropped (sections are boxes) |
 | ` ```php ` (any language Shiki knows) | Highlighted code block with a language label |
@@ -78,11 +78,11 @@ tocLabel: Oefeningen            # link text when tocMode is page
 | `` `ping` `` | `<span class="ti_mono">` |
 | `` `foreach`{.keyword} `` | `<span class="ti_keyword">` |
 | Paragraph starting with `Dit betekent voor jou:` | Takeaway box with bold label (`takeawayPrefix`) |
-| `::: tip` / `info` / `warning` | Callout box |
+| `::: tip` / `info` / `warning` | Callout box with an icon in the left margin (`calloutIcons`: 💡 ℹ️ ⚠️, hidden from screen readers). Start the text with your own label, e.g. `**Let op:**`; it gets the callout's colour |
 | `::: oefening` / `github` / `jsfiddle` … `:::` | Link block with logo and heading (`blocks` in the config) |
 | Markdown table | `ti_table`, dark header row, zebra rows |
 | `![Alt-tekst](images/router.png)` | Image, uploaded to the course's Files on publish |
-| `![Alt-tekst](images/router.png "Bijschrift")` | Same, with a caption under it |
+| `![Alt-tekst](images/router.png "Bijschrift")` | Same, centred with a caption under it, numbered per page: **Figuur 1.** Bijschrift (`figureLabel`, `""` turns numbering off) |
 | `![Alt-tekst](images/router.png){width=480}` | Same, displayed at most 480px wide |
 | `### Test jezelf 1.1 – Titel` + ` ```text ` blocks in the quiz format | A Canvas New Quiz, and a "Start de quiz" block in its place (see Test jezelf) |
 | `[tekst](./module-2.md#2_1)` | Rewritten to the real Canvas URL of that page |
@@ -92,7 +92,7 @@ Classes you write as `{.name}` get the `ti_` prefix automatically. Section ids c
 
 ## Images
 
-Put images next to the Markdown (for example `content/images/`) and reference them with a relative path. Block logos in `course.config.json` (`blocks.*.logo`) can be local paths too, relative to the project root (for example `assets/oefening.png`). Then the logo lives in the course itself, instead of in a course students may not be enrolled in.
+Put images next to the Markdown (for example `content/images/`) and reference them with a relative path. Block logos in `course.config.json` (`blocks.*.logo`) can be local paths too, relative to the project root (for example `assets/icons/oefening.svg`). `assets/icons/` holds simple SVG icons for the exercise, GitHub (`code.svg`), JSFiddle and quiz blocks: white strokes for the dark blocks, teal for the quiz bar. They are uploaded like images, so they also work in the mobile app and the PDF. (SVG as a `data:` URL inside inline CSS is not used: Canvas' sanitizer may strip it, and the theme CSS does not reach the app.) Then the logo lives in the course itself, instead of in a course students may not be enrolled in.
 
 On `node sync.js`:
 
@@ -132,7 +132,7 @@ On `node sync.js` the file goes through the same steps as an image: it is checke
 
 ## Test jezelf (Canvas New Quizzes)
 
-A heading that starts with `Test jezelf`, followed directly by one or more ` ```text ` blocks in the Schrijfwijzer quiz format, becomes one New Quiz. On the page, the heading and the blocks are replaced by a quiz block inside the section: the title, a **Start de quiz** button and "3 vragen · telt niet mee · onbeperkt pogingen".
+A heading that starts with `Test jezelf`, followed directly by one or more ` ```text ` blocks in the Schrijfwijzer quiz format, becomes one New Quiz. On the page, the heading and the blocks are replaced by a compact quiz bar inside the section: the quiz icon, the title with "3 vragen · telt niet mee · onbeperkt pogingen" under it, and a **Start de quiz** button on the right. On phones the button moves below the title (`theme/canvas-theme.css`, `theme/canvas-mobile.css`).
 
 ````markdown
 ### Test jezelf 1.1 – Algorithm
@@ -213,7 +213,7 @@ node convert-pdf.js --out ~/Desktop/cursus.pdf       # other output path
 `convert-pdf.js` is separate from `sync.js`: no Canvas calls, no token, and it never reads or writes `canvas-map.json`.
 
 - **Order:** cover, table of contents with page numbers, then per module (front matter `module`) the module page(s) followed by the exercises, in `order`. A page with `pdf: false` in its front matter is skipped. Review notes in `review/` are never included.
-- **Look:** `css/style.css` (the same CSS as the Canvas pages: section banners, code blocks, callouts, tables) plus `css/pdf.css` (everything PDF-only: wide unframed body text, square banners, page breaks, cover, table of contents, quiz text). Code is highlighted by the same Shiki step as the pages. Bookmarks and internal links (`./module-1.md#1_6`) work.
+- **Look:** `css/style.css` (the same CSS as the Canvas pages: light section headers, variant headers, code blocks, callouts, tables) plus `css/pdf.css` (everything PDF-only: wide unframed body text without card shadows, square variant headers, page breaks, cover, table of contents, quiz text). Code is highlighted by the same Shiki step as the pages. Bookmarks and internal links (`./module-1.md#1_6`) work.
 - **Table of contents:** modules and their sections only; the exercise pages are not listed (`tocExercises: true` lists them).
 - **Hidden blocks:** the GitHub and exercise-link blocks are left out (`hideBlocks`; add `"jsfiddle"` to hide those too, `[]` keeps all).
 - **Test jezelf:** printed as numbered questions with answer boxes. **No answers and no feedback.** Matching, ordering and categorising items, and dropdown choices, are shown in a scrambled but fixed order, so the order never gives the answer.
@@ -261,7 +261,7 @@ All PDF settings live in `pdf.config.json` (`--config other.json` uses another f
 | | `css/style.css` → inlined | `theme/canvas-theme.css` → sub-account theme |
 |---|---|---|
 | Scope | Only the generated pages | Whole sub-account; every selector starts with a `ti_` class |
-| Contents | Colours, boxes, typography, code colours, overview look, float layout | Sticky overview, narrow-screen stacking, hover/focus, smooth scroll, print |
+| Contents | Colours, cards, typography (own font stack on `.ti_page`), code colours, overview look, float/table layout | Sticky overview, narrow-screen stacking (overview, quiz bar), hover/focus, smooth scroll, print |
 | Works in mobile app / course copies / Commons | Yes | Desktop file: no. `canvas-mobile.css` covers the app (stacked layout) |
 | Change takes effect | After `node sync.js --force` | Immediately |
 
@@ -274,9 +274,12 @@ Canvas' sanitizer may drop some inline properties. Publish one page to a sandbox
 | Colour | Use | Contrast |
 |---|---|---|
 | `#25b4b1` | Borders and accents only | 2.55:1 with white, so never behind text |
-| `#167572` | Header bars with white text | 5.5:1 |
-| `#0d5c5a` | Exercise blocks, table header, labels | 7.8:1 |
+| `#167572` | Overview title, link blocks, quiz button (white text) | 5.5:1 |
+| `#0d5c5a` | Section titles, exercise block, table header, labels | 7.8:1 |
 | `#0f6e6b` | Teal text and links on white | 6.1:1 |
+| `#d7ecec` | Card borders (sections, overview, quiz bar) | decoration |
+
+Variant labels (white text): Makkelijk `#2e7d32` 5.1:1, Gemiddeld `#1d4f91` 8.1:1, Moeilijk `#b42318` 6.6:1, @Home `#6b3fa0` 7.4:1, Extra `#0d5c5a` 7.8:1, Let op `#a14f0a` 5.8:1. Their titles on the tinted header are all above 7:1.
 
 ### Syntax highlighting
 

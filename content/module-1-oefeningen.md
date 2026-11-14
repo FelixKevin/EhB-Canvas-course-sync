@@ -29,7 +29,11 @@ Download de [lege pingtabel](files/module-1/pingtabel.csv) en open ze in een spr
 | Router | < 5 ms | |
 | 8.8.8.8 | < 30 ms | |
 
-## Oefening 2: Een eenvoudige PHP-check {.hard}
+## Oefening 2: Wifi of kabel {.medium}
+
+Ping je router tien keer via wifi en daarna tien keer via een kabel. Vergelijk de gemiddelde latency en verklaar het verschil met 1.5.
+
+## Oefening 3: Een eenvoudige PHP-check {.hard}
 
 ```php
 <?php
@@ -52,7 +56,7 @@ console.log(res.status);
 [Probeer de fetch-code in JSFiddle](https://jsfiddle.net/)
 :::
 
-## Oefening 3: Thuisopdracht {.home}
+## Oefening 4: Thuisopdracht {.home}
 
 Teken je eigen thuisnetwerk: welke toestellen zijn verbonden met welk apparaat? Duid aan waar je LAN eindigt.
 
@@ -62,3 +66,7 @@ Teken je eigen thuisnetwerk: welke toestellen zijn verbonden met welk apparaat? 
   "toestellen": ["laptop", "telefoon", "printer"]
 }
 ```
+
+## Oefening 5: Traceroute naar drie websites {.extra}
+
+Voer `traceroute` (of `tracert`) uit naar drie websites op verschillende continenten. Hoeveel tussenstations tel je telkens?
