@@ -20,6 +20,30 @@ Run `npm run theme`, then upload `theme-upload/canvas-upload.css` (CSS file) and
 
 Commit `canvas-map.json` (page ids, slugs and content hashes; no secrets). Never commit `.env`.
 
+## Updating a course project
+
+Every course is its own copy of this tool; only `content/` and `review/` (and the course's own config) differ. `npm run update` (`node update.js`) brings the tool files of a course project up to date from this repository, `courseSync.updateSource` in `package.json`:
+
+```bash
+npm run update -- --dry-run   # list what would change, write nothing
+npm run update                # update, then "npm ci" if the dependencies changed
+```
+
+| What | Treatment |
+|---|---|
+| `sync.js`, `convert-pdf.js`, `build-theme.js`, `update.js`, `template.html`, `package.json`, `package-lock.json`, `README.md`, `.gitignore`, `lib/`, `css/`, `theme/`, `assets/` | Replaced by the upstream version |
+| `course.config.json`, `pdf.config.json` | Only **missing** keys are added (new options); every value you set stays as it is |
+| `content/`, `review/`, `.env`, `canvas-map.json`, `out/`, `theme-upload/` | Never written |
+| Files only in the project (an extra logo in `assets/`) | Kept, never deleted |
+
+- **Safe to undo.** In a git project the update stops when a tool file has uncommitted changes (`--force` overrides). Afterwards `git diff` shows exactly what changed; the script prints the `git restore` command that undoes it without touching course text.
+- **Options:** `--from <git url | folder>` for another source (a local checkout works too), `--ref <branch | tag>` for a specific version, `--no-install` to skip `npm ci`.
+- **After an update** the script says what to do next: `node sync.js --dry-run` (a CSS or renderer change republishes every page on the next sync), `npm run theme` and a new upload when `theme/` changed.
+- **Your values win.** New defaults for keys you already have are not applied. Example: a project with `"blocks": { "quiz": { "logo": null } }` keeps a quiz bar without icon; set `"logo": "assets/icons/quiz.svg"` yourself to use the new icon.
+- `.course-sync-version` records the upstream commit of the last update.
+- **First time:** a project made before `update.js` existed does not have it yet. Copy `update.js` from this repository into the project once and run `node update.js`; from then on it updates itself.
+- In this repository itself the script refuses to run (its git remote is the source): use `git pull`.
+
 ## Files per module
 
 The [Schrijfwijzer](https://claude.ai/artifact/XCzfwcBv8Jm3rTg5NMYgv5) (chapter 17) splits each module over three files:
@@ -47,6 +71,7 @@ Only `.md` files directly in `content/` are read; files whose name starts with `
 | `node sync.js --allow-missing-images` | Publish even if an image is missing or unsupported (it shows as broken). |
 | `node sync.js --with-pdf` | Also build the PDF of the **published** pages, upload it and link it at the bottom of every TOC (see "PDF in the course"). |
 | `npm run pdf` | Whole course as one PDF in `out/pdf/` (see "PDF of the whole course"). Never touches Canvas. |
+| `npm run update` | Update the tool files from the upstream repository; `content/` and `review/` are never touched (see "Updating a course project"). |
 
 ## Front matter
 
