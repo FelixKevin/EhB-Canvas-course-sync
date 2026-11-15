@@ -39,7 +39,7 @@ npm run update                # update, then "npm ci" if the dependencies change
 - **Safe to undo.** In a git project the update stops when a tool file has uncommitted changes (`--force` overrides). Afterwards `git diff` shows exactly what changed; the script prints the `git restore` command that undoes it without touching course text.
 - **Options:** `--from <git url | folder>` for another source (a local checkout works too), `--ref <branch | tag>` for a specific version, `--no-install` to skip `npm ci`.
 - **After an update** the script says what to do next: `node sync.js --dry-run` (a CSS or renderer change republishes every page on the next sync), `npm run theme` and a new upload when `theme/` changed.
-- **Your values win.** New defaults for keys you already have are not applied. Example: a project with `"blocks": { "quiz": { "logo": null } }` keeps a quiz bar without icon; set `"logo": "assets/icons/quiz.svg"` yourself to use the new icon.
+- **Your values win.** New defaults for keys you already have are not applied: a project keeps its own block logos (for example `assets/oefening.png`). The quiz bar is the exception by design: a quiz `logo` of `null` (or none) means "use the default icon", see Images.
 - `.course-sync-version` records the upstream commit of the last update.
 - **First time:** a project made before `update.js` existed does not have it yet. Copy `update.js` from this repository into the project once and run `node update.js`; from then on it updates itself.
 - In this repository itself the script refuses to run (its git remote is the source): use `git pull`.
@@ -117,7 +117,7 @@ Classes you write as `{.name}` get the `ti_` prefix automatically. Section ids c
 
 ## Images
 
-Put images next to the Markdown (for example `content/images/`) and reference them with a relative path. Block logos in `course.config.json` (`blocks.*.logo`) can be local paths too, relative to the project root (for example `assets/icons/oefening.svg`). `assets/icons/` holds simple SVG icons for the exercise, GitHub (`code.svg`), JSFiddle and quiz blocks: white strokes for the dark blocks, teal for the quiz bar. They are uploaded like images, so they also work in the mobile app and the PDF. (SVG as a `data:` URL inside inline CSS is not used: Canvas' sanitizer may strip it, and the theme CSS does not reach the app.) Then the logo lives in the course itself, instead of in a course students may not be enrolled in.
+Put images next to the Markdown (for example `content/images/`) and reference them with a relative path. Block logos in `course.config.json` (`blocks.*.logo`) can be local paths too, relative to the project root (for example `assets/icons/oefening.svg`). `assets/icons/` holds simple SVG icons for the exercise, GitHub (`code.svg`), JSFiddle and quiz blocks: white strokes for the dark blocks, teal for the quiz bar. They are uploaded like images, so they also work in the mobile app and the PDF. The quiz bar uses `assets/icons/quiz.svg` when `blocks.quiz.logo` is missing or `null` (`lib/config.js`); set `"logo": false` for a quiz bar without icon, or a path for your own icon. (SVG as a `data:` URL inside inline CSS is not used: Canvas' sanitizer may strip it, and the theme CSS does not reach the app.) Then the logo lives in the course itself, instead of in a course students may not be enrolled in.
 
 On `node sync.js`:
 
@@ -223,7 +223,7 @@ Options in `course.config.json` (`quizzes`):
 | `instructions` | Dutch text | Shown at the top of every quiz |
 | `metaText` | `{n} vragen · telt niet mee · onbeperkt pogingen` | Line under the button on the page |
 
-`blocks.quiz` sets the block's `logo`, `linkText` and `linkTarget`.
+`blocks.quiz` sets the block's `logo` (default `assets/icons/quiz.svg`, `false` for none), `linkText` and `linkTarget`.
 
 ## PDF of the whole course
 

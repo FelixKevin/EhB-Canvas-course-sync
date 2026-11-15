@@ -22,6 +22,7 @@ const { Canvas } = require('./lib/canvas');
 const { createImages } = require('./lib/images');
 const { parseQuiz, buildPayload } = require('./lib/quiz');
 const { syncQuizzes, quizOptions } = require('./lib/quizsync');
+const { loadConfig } = require('./lib/config');
 
 const ROOT = __dirname;
 const args = process.argv.slice(2);
@@ -31,7 +32,7 @@ const WITH_PDF = args.includes('--with-pdf');
 const ONLY = args.includes('--only') ? args[args.indexOf('--only') + 1] : null;
 
 loadDotEnv(path.join(ROOT, '.env'));
-const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'course.config.json'), 'utf8'));
+const config = loadConfig(ROOT); // course.config.json + defaults (quiz icon)
 const MAP_FILE = path.join(ROOT, 'canvas-map.json');
 const map = fs.existsSync(MAP_FILE) ? JSON.parse(fs.readFileSync(MAP_FILE, 'utf8')) : {};
 const coursePath = `${config.baseUrl.replace(/\/$/, '')}/courses/${config.courseId}`;

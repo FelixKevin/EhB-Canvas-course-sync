@@ -20,6 +20,7 @@ const { pathToFileURL } = require('url');
 const { createRenderer, slugify, esc } = require('./lib/render');
 const { parseQuiz } = require('./lib/quiz');
 const { renderQuizText } = require('./lib/pdfquiz');
+const { loadConfig } = require('./lib/config');
 
 const ROOT = __dirname;
 
@@ -45,7 +46,7 @@ if (require.main === module) {
 // Returns { pdfFile, name, hash, pageCount, parts, modules }; hash covers everything that ends up in the PDF
 // (HTML + image bytes), so callers can skip an upload when it did not change (the PDF itself holds a timestamp).
 async function generatePdf(o = {}) {
-  const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'course.config.json'), 'utf8'));
+  const config = loadConfig(ROOT);
   const cfgFile = path.resolve(ROOT, o.config || 'pdf.config.json');
   const fileCfg = fs.existsSync(cfgFile) ? JSON.parse(fs.readFileSync(cfgFile, 'utf8')) : {};
   const cfg = {
