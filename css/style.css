@@ -309,16 +309,20 @@
 
 .ti_callout_warning strong{ color: #8a4609; }
 
-/* ---- Tables: full width, rounded ------------------------------------------ */
-.ti_table{
-    border-collapse: separate;
-    border-spacing: 0px;
-    box-sizing: border-box;
-    width: calc(100% - 48px);
+/* ---- Tables: full width, rounded ------------------------------------------
+   No box-sizing or calc(): Canvas' sanitizer strips box-sizing, which made a padded or bordered
+   calc() width wider than its card. The wrapper is a plain block; the table fills it. */
+.ti_table_wrap{
+    margin: 8px 24px 16px 24px;
     border: 1px solid #c8e6e5;
     border-radius: 6px;
-    overflow: hidden;
-    margin: 8px 24px 16px 24px;
+    overflow-x: auto;
+}
+
+.ti_table{
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px;
 }
 
 .ti_table td{
@@ -396,16 +400,18 @@
    Table cells instead of floats: the button stays vertically centred and the reading order
    stays "title, then button". Phones stack the button below (theme + mobile CSS). */
 .ti_block_quiz{
-    display: table;
-    box-sizing: border-box;
-    width: calc(100% - 48px);
-    border-collapse: separate;
     background-color: #f3fafa;
     color: #0d2b2a;
     border: 1px solid #d7ecec;
     border-radius: 8px;
     margin: 8px 24px 16px 24px;
     padding: 14px 18px;
+}
+
+.ti_block_row{
+    display: table;
+    width: 100%;
+    border-collapse: separate;
 }
 
 .ti_block_quiz .ti_block_logo{

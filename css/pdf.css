@@ -361,7 +361,7 @@ body.ti_pdf {
 
 .ti_pdf_chapter .ti_codeblock,
 .ti_pdf_chapter .ti_callout,
-.ti_pdf_chapter .ti_table { margin-left: 0; margin-right: 0; }
+.ti_pdf_chapter .ti_table_wrap { margin-left: 0; margin-right: 0; }
 
 .ti_pdf_chhead,
 .ti_pdf_toc_title,

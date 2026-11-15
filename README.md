@@ -292,7 +292,7 @@ All PDF settings live in `pdf.config.json` (`--config other.json` uses another f
 
 Rule of thumb: anything a page needs to be readable goes inline. Only pseudo-classes, media queries, `position: sticky` and `:has()` go in the theme.
 
-Canvas' sanitizer may drop some inline properties. Publish one page to a sandbox course and compare it with the dry-run output. Anything stripped can move to the theme file, scoped to its `ti_` class.
+Canvas' sanitizer may drop some inline properties. Publish one page to a sandbox course and compare it with the dry-run output. Anything stripped can move to the theme file, scoped to its `ti_` class. Known: `box-sizing` is stripped, so never combine a `width` with padding or a border on the same element. Put margin, border and padding on a plain block and give the element inside `width: 100%` (the quiz bar's `ti_block_row`, the table's `ti_table_wrap`).
 
 ### Palette (WCAG contrast)
 

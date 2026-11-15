@@ -40,7 +40,7 @@
 @media (max-width: 600px) {
   .ti_code, .ti_output { white-space: pre !important; overflow-x: auto; font-size: 13px !important; }
   /* Test jezelf: button below the title instead of beside it */
-  .ti_block_quiz { display: block !important; width: auto !important; }
+  .ti_block_quiz .ti_block_row { display: block !important; }
   .ti_block_quiz .ti_block_logo { display: block !important; float: left !important; }
   .ti_block_quiz .ti_block_body { display: block !important; overflow: hidden; }
   .ti_block_quiz .ti_block_action { display: block !important; width: auto !important; clear: both; text-align: left !important; padding: 10px 0 0 0 !important; }
@@ -63,5 +63,5 @@
   .ti_page > .ti_overview,
   .ti_section .ti_top { display: none !important; }
   .ti_page > .ti_content { margin-left: 0 !important; max-width: none !important; }
-  .ti_codeblock, .ti_table, .ti_callout { break-inside: avoid; }
+  .ti_codeblock, .ti_table_wrap, .ti_callout { break-inside: avoid; }
 }
