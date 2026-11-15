@@ -95,7 +95,7 @@ tocLabel: Oefeningen            # link text when tocMode is page
 | `# Title` | Not rendered; used as the Canvas page title |
 | `## 1.1 Wat is een variabele?` | `<div class="ti_section"><a id="1_1"></a><h3>… <a class="ti_top" aria-label="Terug naar boven">↑</a></h3>`: a light header (accent stripe, teal title) with a round back-to-top arrow on the right (`backToTopText`, `backToTopLabel`) |
 | `## Titel {#eigen-id}` | Same, with your own anchor id |
-| `## Oefening 3 {.hard}` | Variant header: `.easy`, `.medium`, `.hard`, `.home`, `.extra`, `.letop` (prefixed automatically). Tinted header, thick stripe in its own colour and a text label (`variantLabels`, e.g. MOEILIJK), so the level is not shown by colour alone |
+| `## Oefening 3 {.hard}` | Variant header: `.easy`, `.medium`, `.hard`, `.home`, `.extra`, `.letop` (prefixed automatically). Tinted header, thick stripe in its own colour and a text label (`variantLabels`: Easy, Medium, Hard, @Home, Extra, Let op; shown in capitals except @Home), so the level is not shown by colour alone |
 | `### Subtitel` | `<h5>` (see `headingMap`) |
 | `---` | Dropped (sections are boxes) |
 | ` ```php ` (any language Shiki knows) | Highlighted code block with a language label |
@@ -304,7 +304,7 @@ Canvas' sanitizer may drop some inline properties. Publish one page to a sandbox
 | `#0f6e6b` | Teal text and links on white | 6.1:1 |
 | `#d7ecec` | Card borders (sections, overview, quiz bar) | decoration |
 
-Variant labels (white text): Makkelijk `#2e7d32` 5.1:1, Gemiddeld `#1d4f91` 8.1:1, Moeilijk `#b42318` 6.6:1, @Home `#6b3fa0` 7.4:1, Extra `#0d5c5a` 7.8:1, Let op `#a14f0a` 5.8:1. Their titles on the tinted header are all above 7:1.
+Variant labels (white text): Easy `#2e7d32` 5.1:1, Medium `#1d4f91` 8.1:1, Hard `#b42318` 6.6:1, @Home `#6b3fa0` 7.4:1, Extra `#0d5c5a` 7.8:1, Let op `#a14f0a` 5.8:1. Their titles on the tinted header are all above 7:1.
 
 ### Syntax highlighting
 

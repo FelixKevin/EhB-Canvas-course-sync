@@ -14,7 +14,7 @@
   },
   "backToTopText": "↑",
   "backToTopLabel": "Terug naar boven",
-  "variantLabels": { "easy": "Makkelijk", "medium": "Gemiddeld", "hard": "Moeilijk", "home": "@Home", "extra": "Extra", "letop": "Let op" },
+  "variantLabels": { "easy": "Easy", "medium": "Medium", "hard": "Hard", "home": "@Home", "extra": "Extra", "letop": "Let op" },
   "figureLabel": "Figuur {n}.",
   "calloutIcons": { "tip": "💡", "info": "ℹ️", "warning": "⚠️" },
   "topId": "ti_top",
