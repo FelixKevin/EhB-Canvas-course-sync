@@ -319,7 +319,7 @@ Done at build time by Shiki (`code.theme`, default `github-dark-default`). Every
 1. **Match each file to a page.** List the course's pages and match each `.md` file by its stored `page_id`. On the first run, an existing page with the **same title** is adopted, so your current pages are taken over, not duplicated. Otherwise a new page is created, unpublished unless `published: true`.
 2. **Update titles first.** If a title changed, it is updated before anything else. Canvas then changes the page's URL slug, so every page is re-rendered with the new links.
 3. **Sync quizzes and images.** Images are uploaded and Test jezelf quizzes are created or updated, so pages can link to them.
-4. **Render every page** with its own overview: the current module is open and highlighted, and links within the page are `#anchor`s.
+4. **Render every page** with its own overview: the current module is open and highlighted, and links within the page are `#anchor`s. The other modules are collapsible `<details>`; the current one is a plain block that is always open, because Canvas strips the `open` attribute from `<details>`.
 5. **Push only what changed.** Pages whose final HTML hash matches `canvas-map.json` are skipped, which keeps page history clean.
 
 **The build owns these pages.** Edits made directly in Canvas are overwritten on the next publish.

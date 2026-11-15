@@ -30,7 +30,7 @@
 /* Hover / keyboard focus (pseudo-classes cannot be inlined) */
 .ti_overview_link:hover,
 .ti_overview_link:focus-visible { text-decoration: underline; background-color: #e3f1f1; }
-.ti_overview_summary:hover { color: #0d5c5a; }
+summary.ti_overview_summary:hover { color: #0d5c5a; }
 .ti_overview_pdf:hover,
 .ti_overview_pdf:focus-visible { text-decoration: underline; background-color: #e3f1f1; }
 .ti_section a:hover,

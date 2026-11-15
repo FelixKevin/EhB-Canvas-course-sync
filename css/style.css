@@ -504,6 +504,10 @@
     padding-left: 13px;
 }
 
+.ti_overview_static{
+    cursor: default;
+}
+
 .ti_overview_module.ti_current .ti_overview_summary{
     color: #0d5c5a;
 }
