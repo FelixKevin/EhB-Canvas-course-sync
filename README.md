@@ -324,6 +324,8 @@ Done at build time by Shiki (`code.theme`, default `github-dark-default`). Every
 
 **The build owns these pages.** Edits made directly in Canvas are overwritten on the next publish.
 
+**Network errors.** A failed request names the request, the host, the real cause with its code and a hint, for example `GET https://canvas.ehb.be/api/v1/courses/43147/pages failed: getaddrinfo ENOTFOUND canvas.ehb.be (ENOTFOUND)`. A dropped connection (`ECONNRESET`, `UND_ERR_SOCKET`, timeouts) is retried up to 3 times for GET, PUT and DELETE; POST and PATCH are not repeated, so nothing is created twice. Running the sync again after a failure is safe: unchanged pages are skipped. Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_VERIFY_LEAF_SIGNATURE`) usually mean a network proxy that replaces certificates: set `NODE_EXTRA_CA_CERTS` to its root certificate or use another network.
+
 ## Running from GitHub Actions (optional)
 
 ```yaml
