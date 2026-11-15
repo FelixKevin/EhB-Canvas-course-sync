@@ -1,7 +1,7 @@
 /* ==========================================================================
    ti_ course template — SUB-ACCOUNT THEME CSS (Theme Editor > Upload > CSS file)
-   Only what inline styles cannot do. Every selector starts with a ti_ class,
-   so courses that do not use the template are not affected.
+   Only what inline styles cannot do. Every selector starts with a ti_ class or is limited
+   to template pages with :has(.ti_page), so courses that do not use the template are not affected.
    If this file is missing (mobile app, other sub-account), pages still render:
    the overview simply floats beside the content without sticking.
    ========================================================================== */
@@ -13,6 +13,11 @@
   max-height: calc(100vh - 32px);
   overflow-y: auto;
 }
+
+/* Canvas gives the page wrapper overflow-x: auto, which makes it its own scroll box: a sticky
+   element then sticks inside that box, which never scrolls, so the overview scrolled away with
+   the page. clip still cuts off anything too wide but is not a scroll box. Template pages only. */
+.user_content:has(.ti_page) { overflow: clip !important; }
 
 /* Smooth jumps to sections, only on template pages, only if the user allows motion */
 @media (prefers-reduced-motion: no-preference) {
