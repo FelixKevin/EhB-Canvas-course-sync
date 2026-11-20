@@ -39,7 +39,7 @@ npm run update                # update, then "npm ci" if the dependencies change
 - **Safe to undo.** In a git project the update stops when a tool file has uncommitted changes (`--force` overrides). Afterwards `git diff` shows exactly what changed; the script prints the `git restore` command that undoes it without touching course text.
 - **Options:** `--from <git url | folder>` for another source (a local checkout works too), `--ref <branch | tag>` for a specific version, `--no-install` to skip `npm ci`.
 - **After an update** the script says what to do next: `node sync.js --dry-run` (a CSS or renderer change republishes every page on the next sync), `npm run theme` and a new upload when `theme/` changed.
-- **Your values win.** New defaults for keys you already have are not applied: a project keeps its own block logos (for example `assets/oefening.png`). The quiz bar is the exception by design: a quiz `logo` of `null` (or none) means "use the default icon", see Images.
+- **Your values win.** New defaults for keys you already have are not applied: a project keeps its own block logos (for example `assets/oefening.png`). Defaults that features need are filled in when the config is loaded (`lib/config.js`), not written to the file: the callouts tip/info/warning/story are always registered (a `callouts` list in the config is extended, never shortened), and missing `calloutIcons` and `variantLabels` entries get their defaults. A course with an older config therefore still gets `::: story` and the Case label. The quiz bar is the exception by design: a quiz `logo` of `null` (or none) means "use the default icon", see Images.
 - `.course-sync-version` records the upstream commit of the last update.
 - **First time:** a project made before `update.js` existed does not have it yet. Copy `update.js` from this repository into the project once and run `node update.js`; from then on it updates itself.
 - In this repository itself the script refuses to run (its git remote is the source): use `git pull`.
@@ -95,7 +95,7 @@ tocLabel: Oefeningen            # link text when tocMode is page
 | `# Title` | Not rendered; used as the Canvas page title |
 | `## 1.1 Wat is een variabele?` | `<div class="ti_section"><a id="1_1"></a><h3>… <a class="ti_top" aria-label="Terug naar boven">↑</a></h3>`: a light header (accent stripe, teal title) with a round back-to-top arrow on the right (`backToTopText`, `backToTopLabel`) |
 | `## Titel {#eigen-id}` | Same, with your own anchor id |
-| `## Oefening 3 {.hard}` | Variant header: `.easy`, `.medium`, `.hard`, `.home`, `.extra`, `.letop` (prefixed automatically). Tinted header, thick stripe in its own colour and a text label (`variantLabels`: Easy, Medium, Hard, @Home, Extra, Let op; shown in capitals except @Home), so the level is not shown by colour alone |
+| `## Oefening 3 {.hard}` | Variant header: `.easy`, `.medium`, `.hard`, `.home`, `.extra`, `.case`, `.letop` (prefixed automatically). Tinted header, thick stripe in its own colour and a text label (`variantLabels`: Easy, Medium, Hard, @Home, Extra, Case, Let op; shown in capitals except @Home), so the level is not shown by colour alone. A label missing from the config gets its default (`lib/config.js`); `""` hides it |
 | `### Subtitel` | `<h5>` (see `headingMap`) |
 | `---` | Dropped (sections are boxes) |
 | ` ```php ` (any language Shiki knows) | Highlighted code block with a language label |
@@ -103,7 +103,7 @@ tocLabel: Oefeningen            # link text when tocMode is page
 | `` `ping` `` | `<span class="ti_mono">` |
 | `` `foreach`{.keyword} `` | `<span class="ti_keyword">` |
 | Paragraph starting with `Dit betekent voor jou:` | Takeaway box with bold label (`takeawayPrefix`) |
-| `::: tip` / `info` / `warning` | Callout box with an icon in the left margin (`calloutIcons`: 💡 ℹ️ ⚠️, hidden from screen readers). Start the text with your own label, e.g. `**Let op:**`; it gets the callout's colour |
+| `::: tip` / `info` / `warning` / `story` | Callout box with an icon in the left margin (`calloutIcons`: 💡 ℹ️ ⚠️ 📖, hidden from screen readers). Start the text with your own label, e.g. `**Let op:**`; it gets the callout's colour. `story` is the narrative of a case, slate grey like the `{.case}` header. These four always work: `callouts` in the config can add more, not remove them, and a missing icon gets its default |
 | `::: oefening` / `github` / `jsfiddle` … `:::` | Link block with logo and heading (`blocks` in the config) |
 | Markdown table | `ti_table`, dark header row, zebra rows |
 | `![Alt-tekst](images/router.png)` | Image, uploaded to the course's Files on publish |
@@ -304,7 +304,7 @@ Canvas' sanitizer may drop some inline properties. Publish one page to a sandbox
 | `#0f6e6b` | Teal text and links on white | 6.1:1 |
 | `#d7ecec` | Card borders (sections, overview, quiz bar) | decoration |
 
-Variant labels (white text): Easy `#2e7d32` 5.1:1, Medium `#1d4f91` 8.1:1, Hard `#b42318` 6.6:1, @Home `#6b3fa0` 7.4:1, Extra `#0d5c5a` 7.8:1, Let op `#a14f0a` 5.8:1. Their titles on the tinted header are all above 7:1.
+Variant labels (white text): Easy `#2e7d32` 5.1:1, Medium `#1d4f91` 8.1:1, Hard `#b42318` 6.6:1, @Home `#6b3fa0` 7.4:1, Extra `#0d5c5a` 7.8:1, Case `#455a64` 7.2:1, Let op `#a14f0a` 5.8:1. Their titles on the tinted header are all above 7:1 (Case `#263238` on `#eceff1`: 11.4:1). Story callout: bold label `#37474f` 8.8:1 and body text 10.5:1 on `#f3f5f6`. Slate is not one of the teal shades, so it stays grey in the red PDF.
 
 ### Syntax highlighting
 

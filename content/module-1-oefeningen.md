@@ -70,3 +70,13 @@ Teken je eigen thuisnetwerk: welke toestellen zijn verbonden met welk apparaat? 
 ## Oefening 5: Traceroute naar drie websites {.extra}
 
 Voer `traceroute` (of `tracert`) uit naar drie websites op verschillende continenten. Hoeveel tussenstations tel je telkens?
+
+## Case: Het kotnetwerk {.case}
+
+::: story
+**Verhaal:** Lars, Ines en Tom huren samen een kot. Sinds Tom een tweede router heeft aangesloten, valt de printer om de paar minuten weg en werkt de wifi in de keuken niet meer.
+:::
+
+1. Teken het netwerk van het kot met alle toestellen.
+2. Welke rol (modem, router, switch) speelt elk toestel? Gebruik 1.3.
+3. Stel een oplossing voor en leg uit waarom die werkt.

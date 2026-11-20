@@ -14,9 +14,9 @@
   },
   "backToTopText": "↑",
   "backToTopLabel": "Terug naar boven",
-  "variantLabels": { "easy": "Easy", "medium": "Medium", "hard": "Hard", "home": "@Home", "extra": "Extra", "letop": "Let op" },
+  "variantLabels": { "easy": "Easy", "medium": "Medium", "hard": "Hard", "home": "@Home", "extra": "Extra", "case": "Case", "letop": "Let op" },
   "figureLabel": "Figuur {n}.",
-  "calloutIcons": { "tip": "💡", "info": "ℹ️", "warning": "⚠️" },
+  "calloutIcons": { "tip": "💡", "info": "ℹ️", "warning": "⚠️", "story": "📖" },
   "topId": "ti_top",
   "tocTitle": "Cursusoverzicht",
   "takeawayPrefix": "Dit betekent voor jou:",
@@ -69,7 +69,8 @@
   "callouts": [
     "tip",
     "info",
-    "warning"
+    "warning",
+    "story"
   ],
   "externalLinksNewTab": true,
   "files": {

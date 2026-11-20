@@ -347,7 +347,8 @@ body.ti_pdf {
 /* Variant headers keep their tint, square in print */
 .ti_pdf_chapter .ti_section h3.ti_easy, .ti_pdf_chapter .ti_section h3.ti_medium,
 .ti_pdf_chapter .ti_section h3.ti_hard, .ti_pdf_chapter .ti_section h3.ti_home,
-.ti_pdf_chapter .ti_section h3.ti_extra, .ti_pdf_chapter .ti_section h3.ti_letop {
+.ti_pdf_chapter .ti_section h3.ti_extra, .ti_pdf_chapter .ti_section h3.ti_case,
+.ti_pdf_chapter .ti_section h3.ti_letop {
   border-radius: 0;
   padding: 7px 12px;
 }

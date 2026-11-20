@@ -88,11 +88,11 @@
     padding-top: 16px;
 }
 
-/* Variants: ## Titel {.easy} {.medium} {.hard} {.home} {.extra} {.letop}
+/* Variants: ## Titel {.easy} {.medium} {.hard} {.home} {.extra} {.case} {.letop}
    Tinted header + thick stripe in the variant colour + a text label (renderer, variantLabels),
    so the level is clear without relying on colour alone. */
 .ti_section h3.ti_easy, .ti_section h3.ti_medium, .ti_section h3.ti_hard,
-.ti_section h3.ti_home, .ti_section h3.ti_extra, .ti_section h3.ti_letop{
+.ti_section h3.ti_home, .ti_section h3.ti_extra, .ti_section h3.ti_case, .ti_section h3.ti_letop{
     border-left-width: 6px;
     padding: 10px 12px 10px 14px;
     border-radius: 0px 6px 6px 0px;
@@ -102,6 +102,7 @@
 .ti_section h3.ti_hard{ border-left-color: #b42318; background-color: #fdeceb; color: #8c1c13; }
 .ti_section h3.ti_home{ border-left-color: #6b3fa0; background-color: #f4effa; color: #4f2d78; }
 .ti_section h3.ti_extra{ border-left-color: #0d5c5a; background-color: #eaf7f7; color: #0d5c5a; }
+.ti_section h3.ti_case{ border-left-color: #455a64; background-color: #eceff1; color: #263238; }
 .ti_section h3.ti_letop{ border-left-color: #a14f0a; background-color: #fdf4e6; color: #8a4609; }
 
 .ti_variant{
@@ -122,6 +123,7 @@
 .ti_variant_hard{ background-color: #b42318; }
 .ti_variant_home{ background-color: #6b3fa0; text-transform: none; }
 .ti_variant_extra{ background-color: #0d5c5a; }
+.ti_variant_case{ background-color: #455a64; }
 .ti_variant_letop{ background-color: #a14f0a; }
 
 .ti_section p{
@@ -308,6 +310,15 @@
 }
 
 .ti_callout_warning strong{ color: #8a4609; }
+
+/* Story: the narrative of a case, slate like the {.case} header it belongs to */
+.ti_callout_story{
+    padding-left: 44px;
+    border-left-color: #607d8b;
+    background-color: #f3f5f6;
+}
+
+.ti_callout_story strong{ color: #37474f; }
 
 /* ---- Tables: full width, rounded ------------------------------------------
    No box-sizing or calc(): Canvas' sanitizer strips box-sizing, which made a padded or bordered
