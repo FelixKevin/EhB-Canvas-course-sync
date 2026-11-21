@@ -11,7 +11,8 @@
     "publish": "node sync.js",
     "theme": "node build-theme.js",
     "pdf": "node convert-pdf.js",
-    "update": "node update.js"
+    "update": "node update.js",
+    "test": "node --test \"test/**/*.test.js\""
   },
   "courseSync": {
     "updateSource": "https://github.com/FelixKevin/EhB-Canvas-course-sync.git"

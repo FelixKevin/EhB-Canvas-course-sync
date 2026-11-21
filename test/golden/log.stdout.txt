@@ -1,0 +1,1 @@
+Dry run: 5 pages written to ./out (links use predicted slugs, images local paths; 6 image/file(s) found; 3 quiz(zes) with 15 questions, payloads in out/quizzes).

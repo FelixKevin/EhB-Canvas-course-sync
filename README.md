@@ -67,7 +67,10 @@ Only `.md` files directly in `content/` are read; files whose name starts with `
 | `node sync.js --dry-run` | Build into `./out` only. Links use predicted slugs. |
 | `node sync.js` | Create/adopt/rename pages as needed, then push pages whose HTML changed. |
 | `node sync.js --force` | Push every page regardless of hash, e.g. after a change to `style.css`. |
-| `node sync.js --only module-3.md` | Push one page (the overview still includes all pages). |
+| `node sync.js --only module-3.md` | Push one page (the overview still includes all pages). `content/module-3.md` works too; an unknown file stops with an error. |
+| `node sync.js --dry-run --only module-3.md` | Fast preview of one page: only that page is rendered and only `out/module-3.html` is written (no quiz payloads). Its overview still lists every page. |
+| `node sync.js --dry-run --asset-base-url <url>` | Dry run whose images, download links and block logos point at `<url>/<path in the project>` (e.g. `<url>/content/images/router.png`) instead of the local file, so the HTML can be served from another place. A `?query` on the URL is kept after the path. Only with `--dry-run`. |
+| `node sync.js --json` | Same run, but stdout gets one JSON event per line instead of the human log (see "Machine-readable output"). Works with every other option, and with `convert-pdf.js`. |
 | `node sync.js --allow-missing-images` | Publish even if an image is missing or unsupported (it shows as broken). |
 | `node sync.js --with-pdf` | Also build the PDF of the **published** pages, upload it and link it at the bottom of every TOC (see "PDF in the course"). |
 | `npm run pdf` | Whole course as one PDF in `out/pdf/` (see "PDF of the whole course"). Never touches Canvas. |
@@ -85,8 +88,12 @@ published: true                 # true/false sets Canvas publish state; false al
 toc: false                      # leave out of the overview entirely
 tocMode: page                   # "sections" (default if the page has ## headings) or "page" (one link)
 tocLabel: Oefeningen            # link text when tocMode is page
+pdf: false                      # leave out of the PDF (convert-pdf.js)
+home: true                      # make this page the course's front page (see below)
 ---
 ```
+
+**Front page (`home: true`).** On publish, the one page with `home: true` becomes the course's front page (`PUT /api/v1/courses/:id/pages/:url` with `wiki_page[front_page]=true`), but only if it also has `published: true`: Canvas cannot use an unpublished page. The page is remembered as `_frontPage` in `canvas-map.json`, and the call is only made again when another page gets `home: true`, or with `--force`. With `--only` for another page, the front page is left alone. More than one page with `home: true` gives a warning (`home-multiple`) and changes nothing; so does `home: true` on an unpublished page (`home-unpublished`). Both warnings also appear in a dry run. The tool only sets the page flag: it never changes the course's home view (Course Settings → "Set home page" → Pages front page). Do that once in Canvas if the course should open on this page. Removing `home: true` leaves the current front page as it is.
 
 ## Markdown conventions
 
@@ -126,7 +133,7 @@ On `node sync.js`:
 3. **Track.** `canvas-map.json` (`_files`) stores each image's content hash and Canvas file id. Unchanged images are not uploaded again.
 4. **Link.** Pages point at `<course>/files/<id>/preview`, the same URL the Canvas editor uses. When an image changes, only the pages that show it are republished.
 
-In a dry run, images point at the local file, so `out/*.html` previews correctly in a browser.
+In a dry run, images point at the local file, so `out/*.html` previews correctly in a browser. With `--asset-base-url <url>` they point at `<url>/<path in the project>` instead, for a preview served elsewhere.
 
 Options in `course.config.json`:
 
@@ -151,7 +158,7 @@ On `node sync.js` the file goes through the same steps as an image: it is checke
 - **Links only.** Any link to a local file that is not a `.md` page, an anchor or a web address is treated as a file. Images keep using `![alt](images/x.png)`.
 - **`files.linkStyle`** in `course.config.json`: `"download"` (default) or `"preview"` (opens Canvas's file preview, `?wrap=1`, useful for PDFs).
 - **`files.hidden`, `files.usageRights`, `files.folder`** apply to images and downloads alike.
-- **Dry run:** the link points at the local file, so `out/*.html` can be tested.
+- **Dry run:** the link points at the local file, so `out/*.html` can be tested (or at `--asset-base-url`).
 - **PDF:** a download link cannot work on paper. `convert-pdf.js` keeps the link text and adds "(bestand in Canvas: start.zip)", set with `fileNote` in `pdf.config.json` (`""` hides it).
 - Spaces in file names do not work in Markdown links: use `-` or `_`.
 
@@ -321,10 +328,41 @@ Done at build time by Shiki (`code.theme`, default `github-dark-default`). Every
 3. **Sync quizzes and images.** Images are uploaded and Test jezelf quizzes are created or updated, so pages can link to them.
 4. **Render every page** with its own overview: the current module is open and highlighted, and links within the page are `#anchor`s. The other modules are collapsible `<details>`; the current one is a plain block that is always open, because Canvas strips the `open` attribute from `<details>`.
 5. **Push only what changed.** Pages whose final HTML hash matches `canvas-map.json` are skipped, which keeps page history clean.
+6. **Front page.** The page with `home: true` is made the course's front page when that changed (`_frontPage` in `canvas-map.json`), see "Front matter".
+7. **Report leftovers.** A page in `canvas-map.json` whose `.md` file is gone is reported (like a removed quiz), never deleted.
 
 **The build owns these pages.** Edits made directly in Canvas are overwritten on the next publish.
 
 **Network errors.** A failed request names the request, the host, the real cause with its code and a hint, for example `GET https://canvas.ehb.be/api/v1/courses/43147/pages failed: getaddrinfo ENOTFOUND canvas.ehb.be (ENOTFOUND)`. A dropped connection (`ECONNRESET`, `UND_ERR_SOCKET`, timeouts) is retried up to 4 times (after 1, 2 and 4 s) for GET, PUT and DELETE. POST and PATCH are only retried when the request never reached the server (the connection or TLS handshake failed), so nothing is created twice. A file upload that drops is started again from the beginning (up to 3 times): `on_duplicate: overwrite` replaces the same file, so no copies appear. Uploads go to Instructure's file storage (`inst-fs-….inscloudgate.net`), not to the Canvas host, so a network can work for Canvas and still fail for uploads. A VPN is a common cause: if uploads keep failing, sync without it or pick another VPN server. Running the sync again after a failure is safe: unchanged pages are skipped. Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_VERIFY_LEAF_SIGNATURE`) usually mean a network proxy that replaces certificates: set `NODE_EXTRA_CA_CERTS` to its root certificate or use another network.
+
+## Machine-readable output (`--json`)
+
+For programs that drive the tool (such as TI Cursusstudio), `node sync.js --json` and `node convert-pdf.js --json` write one JSON object per line to stdout and nothing else; stderr stays empty. The human log is unchanged without `--json`. File paths in events are relative to the project root (`content/module-1.md`); `line` is 1-based, or `null` when unknown.
+
+| `type` | Fields | When |
+|---|---|---|
+| `progress` | `step`, `message` | Steps of the run: `parse`, `highlight`, `validate`, `pdf`, `pages`, `files`, `quizzes`, `render`, `frontpage`; `note` for informational lines |
+| `warning` | `file`, `line`, `code`, `message` | Everything the human log shows with `!` |
+| `page` | `file`, `action`, `url` | Publish only. `action`: `created`, `adopted`, `renamed`, `updated`, `skipped` (HTML unchanged) |
+| `quiz` | `key`, `action`, `url` | Publish only. `action`: `created`, `updated`, `unchanged`, `recreated` |
+| `file` | `path`, `action`, `url` | Publish only. Images, downloads, block logos and the PDF (`pdf/<name>`). `action`: `uploaded`, `unchanged` |
+| `orphan` | `kind` (`quiz` or `page`), `key` or `file`, `url` | Publish only. Exists in Canvas, no longer in the Markdown; never deleted |
+| `error` | `message`, `code`, `hint` (and `status` for a Canvas HTTP error) | The run failed; exit code 1 |
+| `result` | summary | Always the last line of a successful run |
+
+**Warning codes:** `marker-blocking` (marker on a published page: blocks publishing), `marker-allowed`, `image-missing`, `image-unsupported`, `image-outside-project`, `image-is-folder`, `image-no-alt`, `file-missing`, `file-outside-project`, `file-is-folder`, `link-unknown-page`, `quiz-invalid`, `quiz-experimental`, `quiz-heading-without-questions`, `quiz-questions-without-heading`, `quiz-recreated`, `home-multiple`, `home-unpublished`, `pdf-no-published-pages`, `network-retry`, `upload-retry`.
+
+**Error codes:** `blocked-images`, `blocked-markers`, `blocked-quizzes` (publish refused, see the warnings), `canvas-http`, `network`, `no-token`, `no-title`, `config`, `usage`, `unknown`.
+
+**Result:** a dry run gives `{ dryRun: true, only, pages, written: ["out/module-1.html", …], files, quizzes, questions, frontPage }`; a publish gives `{ dryRun: false, only, pages, pagesUpdated, pagesUnchanged, filesUploaded, quizzes: { created, updated, unchanged }, pdf, frontPage: { file, url, action: "set" | "unchanged" } | null }`. `convert-pdf.js --json` ends with `{ pdfFile, name, hash, pageCount, parts, modules }`.
+
+```bash
+node sync.js --dry-run --json | jq -c 'select(.type == "warning") | [.file, .line, .code]'
+```
+
+## Tests
+
+`npm test` runs the tests in `test/` (Node's built-in test runner, no extra dependencies). `test/golden/` holds the dry-run output of the example `content/` (HTML, quiz payloads and the human log); the tests fail when any of it changes. After a deliberate change to the rendered output, run `node scripts/update-golden.js` and review the diff before committing. Publishing is tested against a small fake Canvas (`test/fake-canvas.js`). Course projects do not receive `test/` or `scripts/` through `npm run update`.
 
 ## Running from GitHub Actions (optional)
 

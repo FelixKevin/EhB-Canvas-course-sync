@@ -1,0 +1,505 @@
+{
+  "quiz": {
+    "title": "Test jezelf 1.6 – Alle vraagtypes",
+    "instructions": "<p>Deze test telt niet mee voor je punten. Je kan hem zo vaak maken als je wil. Na het indienen zie je bij elke vraag of je antwoord juist is, met uitleg.</p>",
+    "points_possible": 8,
+    "grading_type": "points",
+    "quiz_settings": {
+      "calculator_type": "none",
+      "one_at_a_time_type": "none",
+      "shuffle_answers": false,
+      "shuffle_questions": false,
+      "has_time_limit": false,
+      "require_student_access_code": false,
+      "multiple_attempts": {
+        "multiple_attempts_enabled": true,
+        "attempt_limit": false,
+        "max_attempts": null,
+        "score_to_keep": "latest",
+        "cooling_period": false
+      },
+      "result_view_settings": {
+        "result_view_restricted": false
+      }
+    }
+  },
+  "items": [
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 1,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "multi-answer",
+          "title": "Vraag 1",
+          "item_body": "<p>Welke commando's tonen je eigen IP-adres? Kies alle juiste antwoorden.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p><strong>A. <code>ipconfig</code></strong>: Juist, op Windows (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p><p><strong>B. <code>ip a</code></strong>: Juist, op Linux (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p><p><strong>C. <code>ping 8.8.8.8</code></strong>: <code>ping</code> test een verbinding, het toont je eigen adres niet (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_6\" target=\"_blank\">1.6</a>).</p><p><strong>D. <code>ifconfig</code></strong>: Juist, op macOS (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "choices": [
+              {
+                "id": "219ab1ad-d3fb-48e8-910e-f68f108efbe6",
+                "position": 1,
+                "item_body": "<p><code>ipconfig</code></p>"
+              },
+              {
+                "id": "5ac9cf69-11f4-4ae9-987f-67c438f12ac5",
+                "position": 2,
+                "item_body": "<p><code>ip a</code></p>"
+              },
+              {
+                "id": "d39c91f2-74a9-4bcc-8ff6-aaf7121f0c5d",
+                "position": 3,
+                "item_body": "<p><code>ping 8.8.8.8</code></p>"
+              },
+              {
+                "id": "1a29d7ca-73cf-4b56-a71a-39523f0ccb1e",
+                "position": 4,
+                "item_body": "<p><code>ifconfig</code></p>"
+              }
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "choices": {
+                "to_lock": [],
+                "shuffled": true
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              "219ab1ad-d3fb-48e8-910e-f68f108efbe6",
+              "5ac9cf69-11f4-4ae9-987f-67c438f12ac5",
+              "1a29d7ca-73cf-4b56-a71a-39523f0ccb1e"
+            ]
+          },
+          "scoring_algorithm": "PartialScore"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 2,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "true-false",
+          "title": "Vraag 2",
+          "item_body": "<p>Als <code>ping 8.8.8.8</code> werkt maar <code>ping google.com</code> <strong>niet</strong>, dan is je DNS kapot.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Je hebt internet, maar de domeinnaam wordt niet omgezet naar een IP-adres (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_6\" target=\"_blank\">1.6</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "true_choice": "Juist",
+            "false_choice": "Fout"
+          },
+          "properties": {},
+          "scoring_data": {
+            "value": true
+          },
+          "scoring_algorithm": "Equivalence"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 3,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "ordering",
+          "title": "Vraag 3",
+          "item_body": "<p>Zet de stappen van het stappenplan in de juiste volgorde.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Je werkt van binnenuit naar buiten (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_6\" target=\"_blank\">1.6</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "choices": {
+              "1890106d-7869-4c64-bd9f-9e47e3aa831a": {
+                "id": "1890106d-7869-4c64-bd9f-9e47e3aa831a",
+                "item_body": "<p>Werkt je eigen machine?</p>"
+              },
+              "f06df120-e05f-4ab9-82ff-4d3b0f9733a9": {
+                "id": "f06df120-e05f-4ab9-82ff-4d3b0f9733a9",
+                "item_body": "<p>Werkt je lokale netwerk?</p>"
+              },
+              "9026ee65-d7ab-44a2-94a8-4f82063289b4": {
+                "id": "9026ee65-d7ab-44a2-94a8-4f82063289b4",
+                "item_body": "<p>Werkt het internet?</p>"
+              },
+              "ace78c20-7a4b-4360-a87d-6e896abe3d03": {
+                "id": "ace78c20-7a4b-4360-a87d-6e896abe3d03",
+                "item_body": "<p>Werkt DNS?</p>"
+              }
+            }
+          },
+          "properties": {
+            "top_label": "Eerst",
+            "bottom_label": "Laatst",
+            "shuffle_rules": null,
+            "include_labels": true,
+            "display_answers_paragraph": false
+          },
+          "scoring_data": {
+            "value": [
+              "1890106d-7869-4c64-bd9f-9e47e3aa831a",
+              "f06df120-e05f-4ab9-82ff-4d3b0f9733a9",
+              "9026ee65-d7ab-44a2-94a8-4f82063289b4",
+              "ace78c20-7a4b-4360-a87d-6e896abe3d03"
+            ]
+          },
+          "scoring_algorithm": "DeepEquals"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 4,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "categorization",
+          "title": "Vraag 4",
+          "item_body": "<p>Welk toestel doet wat?</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Zie de rol van elk toestel in 1.3.</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "categories": {
+              "ec752688-4553-4e1d-95d3-57d83d606f42": {
+                "id": "ec752688-4553-4e1d-95d3-57d83d606f42",
+                "item_body": "Modem"
+              },
+              "544a6e74-7f5e-4f85-b097-a04f42b7df2c": {
+                "id": "544a6e74-7f5e-4f85-b097-a04f42b7df2c",
+                "item_body": "Router"
+              },
+              "35beb4bd-ffd6-4361-8f9a-3e531bd8263b": {
+                "id": "35beb4bd-ffd6-4361-8f9a-3e531bd8263b",
+                "item_body": "Switch"
+              }
+            },
+            "distractors": {
+              "c9b11988-d886-4a0a-9431-ca88da36adbc": {
+                "id": "c9b11988-d886-4a0a-9431-ca88da36adbc",
+                "item_body": "Zet het signaal om voor de kabel van je provider"
+              },
+              "b9eca8ab-e52d-4a9c-a230-bdd9afc463b1": {
+                "id": "b9eca8ab-e52d-4a9c-a230-bdd9afc463b1",
+                "item_body": "Bepaalt waar data naartoe moet"
+              },
+              "8a18f0dd-82bb-4db3-9c3a-d1b7d1236ed4": {
+                "id": "8a18f0dd-82bb-4db3-9c3a-d1b7d1236ed4",
+                "item_body": "Verdeelt verkeer binnen je LAN"
+              },
+              "c1f4a4c6-afbb-42f4-9834-ebd373c8bd51": {
+                "id": "c1f4a4c6-afbb-42f4-9834-ebd373c8bd51",
+                "item_body": "Versnelt je wifi"
+              }
+            },
+            "category_order": [
+              "ec752688-4553-4e1d-95d3-57d83d606f42",
+              "544a6e74-7f5e-4f85-b097-a04f42b7df2c",
+              "35beb4bd-ffd6-4361-8f9a-3e531bd8263b"
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "questions": {
+                "shuffled": true
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              {
+                "id": "ec752688-4553-4e1d-95d3-57d83d606f42",
+                "scoring_data": {
+                  "value": [
+                    "c9b11988-d886-4a0a-9431-ca88da36adbc"
+                  ]
+                },
+                "scoring_algorithm": "AllOrNothing"
+              },
+              {
+                "id": "544a6e74-7f5e-4f85-b097-a04f42b7df2c",
+                "scoring_data": {
+                  "value": [
+                    "b9eca8ab-e52d-4a9c-a230-bdd9afc463b1"
+                  ]
+                },
+                "scoring_algorithm": "AllOrNothing"
+              },
+              {
+                "id": "35beb4bd-ffd6-4361-8f9a-3e531bd8263b",
+                "scoring_data": {
+                  "value": [
+                    "8a18f0dd-82bb-4db3-9c3a-d1b7d1236ed4"
+                  ]
+                },
+                "scoring_algorithm": "AllOrNothing"
+              }
+            ],
+            "score_method": "all_or_nothing"
+          },
+          "scoring_algorithm": "Categorization"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 5,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "rich-fill-blank",
+          "title": "Vraag 5",
+          "item_body": "<p>De <span id=\"blank_de4b8146-b09c-423f-b5ad-53670bd4fa1b\"></span>-band is sneller, maar heeft minder bereik.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>De 2,4 GHz-band draagt verder maar is trager (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_5\" target=\"_blank\">1.5</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "blanks": [
+              {
+                "id": "de4b8146-b09c-423f-b5ad-53670bd4fa1b",
+                "answer_type": "dropdown",
+                "choices": [
+                  {
+                    "id": "740842b3-7868-41c8-a29b-f624ec0b7481",
+                    "position": 1,
+                    "item_body": "5 GHz"
+                  },
+                  {
+                    "id": "9150b18e-e25b-4bac-b415-2b9639d6c8d6",
+                    "position": 2,
+                    "item_body": "2,4 GHz"
+                  }
+                ]
+              }
+            ],
+            "word_bank_choices": [],
+            "reuse_word_bank_choices": false
+          },
+          "properties": {
+            "shuffle_rules": {
+              "blanks": {
+                "children": {
+                  "0": {
+                    "children": {
+                      "choices": {
+                        "shuffled": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              {
+                "id": "de4b8146-b09c-423f-b5ad-53670bd4fa1b",
+                "scoring_data": {
+                  "value": "740842b3-7868-41c8-a29b-f624ec0b7481",
+                  "blank_text": "5 GHz"
+                },
+                "scoring_algorithm": "Equivalence"
+              }
+            ],
+            "working_item_body": "<p>De `5 GHz`-band is sneller, maar heeft minder bereik.</p>"
+          },
+          "scoring_algorithm": "MultipleMethods"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 6,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "rich-fill-blank",
+          "title": "Vraag 6",
+          "item_body": "<p>Een <span id=\"blank_5911a6bb-6b62-498c-aee0-acd8e6ff305a\"></span> verbindt netwerken, een <span id=\"blank_95bf57f3-5c95-4348-8b26-b1f0d775ac8f\"></span> verdeelt verkeer binnen je LAN.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_3\" target=\"_blank\">1.3</a>.</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "blanks": [
+              {
+                "id": "5911a6bb-6b62-498c-aee0-acd8e6ff305a",
+                "answer_type": "wordbank",
+                "choices": null
+              },
+              {
+                "id": "95bf57f3-5c95-4348-8b26-b1f0d775ac8f",
+                "answer_type": "wordbank",
+                "choices": null
+              }
+            ],
+            "word_bank_choices": [
+              {
+                "id": "8ab8eb95-2969-4b6b-9d5e-f386ca29f91f",
+                "item_body": "router"
+              },
+              {
+                "id": "5fdb4bdd-8d7c-4702-ace8-cc5e763197ee",
+                "item_body": "switch"
+              },
+              {
+                "id": "4931e269-cd8d-47da-a1a7-109d9ca018c1",
+                "item_body": "modem"
+              }
+            ],
+            "reuse_word_bank_choices": false
+          },
+          "properties": {
+            "shuffle_rules": {
+              "blanks": {
+                "children": {
+                  "0": {
+                    "children": null
+                  },
+                  "1": {
+                    "children": null
+                  }
+                }
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              {
+                "id": "5911a6bb-6b62-498c-aee0-acd8e6ff305a",
+                "scoring_data": {
+                  "value": "router",
+                  "choice_id": "8ab8eb95-2969-4b6b-9d5e-f386ca29f91f",
+                  "blank_text": "router"
+                },
+                "scoring_algorithm": "TextEquivalence"
+              },
+              {
+                "id": "95bf57f3-5c95-4348-8b26-b1f0d775ac8f",
+                "scoring_data": {
+                  "value": "switch",
+                  "choice_id": "5fdb4bdd-8d7c-4702-ace8-cc5e763197ee",
+                  "blank_text": "switch"
+                },
+                "scoring_algorithm": "TextEquivalence"
+              }
+            ],
+            "working_item_body": "<p>Een `router` verbindt netwerken, een `switch` verdeelt verkeer binnen je LAN.</p>"
+          },
+          "scoring_algorithm": "MultipleMethods"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 7,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "rich-fill-blank",
+          "title": "Vraag 7",
+          "item_body": "<p>Welk commando stuurt een klein pakketje naar een adres en wacht op antwoord? <span id=\"blank_e6035032-176a-4b0f-b930-2a187d81e414\"></span></p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p><code>ping</code> test of een adres bereikbaar is (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "blanks": [
+              {
+                "id": "e6035032-176a-4b0f-b930-2a187d81e414",
+                "answer_type": "openEntry"
+              }
+            ],
+            "word_bank_choices": [],
+            "reuse_word_bank_choices": false
+          },
+          "properties": {
+            "shuffle_rules": {
+              "blanks": {
+                "children": {
+                  "0": {
+                    "children": null
+                  }
+                }
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              {
+                "id": "e6035032-176a-4b0f-b930-2a187d81e414",
+                "scoring_data": {
+                  "value": [
+                    "ping",
+                    "ping.exe"
+                  ],
+                  "blank_text": "ping"
+                },
+                "scoring_algorithm": "TextInChoices"
+              }
+            ],
+            "working_item_body": "<p>Welk commando stuurt een klein pakketje naar een adres en wacht op antwoord? `ping`</p>"
+          },
+          "scoring_algorithm": "MultipleMethods"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 8,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "numeric",
+          "title": "Vraag 8",
+          "item_body": "<p>Hoeveel ms latency is aanvaardbaar naar je eigen router? Geef een waarde tussen 0 en 5.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Op je eigen LAN is de latency meestal enkele milliseconden (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {},
+          "properties": {},
+          "scoring_data": {
+            "value": [
+              {
+                "id": "c075e3ba-8803-4851-aeac-ce52f4db920a",
+                "type": "withinARange",
+                "start": "0",
+                "end": "5"
+              }
+            ]
+          },
+          "scoring_algorithm": "Numeric"
+        }
+      }
+    }
+  ]
+}

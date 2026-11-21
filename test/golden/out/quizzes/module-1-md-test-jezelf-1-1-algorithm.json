@@ -1,0 +1,204 @@
+{
+  "quiz": {
+    "title": "Test jezelf 1.1 – Algorithm",
+    "instructions": "<p>Deze test telt niet mee voor je punten. Je kan hem zo vaak maken als je wil. Na het indienen zie je bij elke vraag of je antwoord juist is, met uitleg.</p>",
+    "points_possible": 3,
+    "grading_type": "points",
+    "quiz_settings": {
+      "calculator_type": "none",
+      "one_at_a_time_type": "none",
+      "shuffle_answers": false,
+      "shuffle_questions": false,
+      "has_time_limit": false,
+      "require_student_access_code": false,
+      "multiple_attempts": {
+        "multiple_attempts_enabled": true,
+        "attempt_limit": false,
+        "max_attempts": null,
+        "score_to_keep": "latest",
+        "cooling_period": false
+      },
+      "result_view_settings": {
+        "result_view_restricted": false
+      }
+    }
+  },
+  "items": [
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 1,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "choice",
+          "title": "Vraag 1",
+          "item_body": "<p>Welke instructie is ondubbelzinnig? Kies één antwoord.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "choices": [
+              {
+                "id": "45b80e0c-359c-4fab-abdf-b1331de6d550",
+                "position": 1,
+                "item_body": "<p>Tel 21 % btw op bij de prijs.</p>"
+              },
+              {
+                "id": "6bd99302-6b68-409b-9d49-60c225b3e8e5",
+                "position": 2,
+                "item_body": "<p>Voeg een beetje zout toe.</p>"
+              },
+              {
+                "id": "38296eab-3444-4b89-8b57-dee176b841b7",
+                "position": 3,
+                "item_body": "<p>Wacht tot het water warm genoeg is.</p>"
+              },
+              {
+                "id": "f959ee1c-9541-4421-9838-6b5f316ec747",
+                "position": 4,
+                "item_body": "<p>Kies een kleur die goed past.</p>"
+              }
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "choices": {
+                "to_lock": [],
+                "shuffled": true
+              }
+            },
+            "vary_points_by_answer": false
+          },
+          "scoring_data": {
+            "value": "45b80e0c-359c-4fab-abdf-b1331de6d550"
+          },
+          "scoring_algorithm": "Equivalence",
+          "answer_feedback": {
+            "45b80e0c-359c-4fab-abdf-b1331de6d550": "<p>Juist. Iedereen die deze stap uitvoert, komt op hetzelfde bedrag uit (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>).</p>",
+            "6bd99302-6b68-409b-9d49-60c225b3e8e5": "<p>Hoeveel is een beetje? Twee mensen voegen een andere hoeveelheid toe (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>).</p>",
+            "38296eab-3444-4b89-8b57-dee176b841b7": "<p>Wanneer is het warm genoeg? Maak het meetbaar, bijvoorbeeld 80 graden (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>).</p>",
+            "f959ee1c-9541-4421-9838-6b5f316ec747": "<p>Wat goed past, is een mening. Een computer heeft geen mening (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>).</p>"
+          }
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 2,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "matching",
+          "title": "Vraag 2",
+          "item_body": "<p>Koppel elke eigenschap van een algorithm aan haar betekenis.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Zie de tabel in <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>.</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "answers": [
+              "Elke stap kan maar op één manier uitgevoerd worden",
+              "Het algorithm stopt na een eindig aantal stappen",
+              "Na elke stap is duidelijk welke stap volgt",
+              "Het werkt voor elke geldige input"
+            ],
+            "questions": [
+              {
+                "id": "0b9611bf-690f-4d0f-8609-d81da02764d4",
+                "item_body": "Ondubbelzinnig"
+              },
+              {
+                "id": "b01c66ec-31bb-42a8-a31d-a0f07a8f607a",
+                "item_body": "Eindig"
+              },
+              {
+                "id": "fa474a5b-be04-4765-b3ff-ad2d04f16b28",
+                "item_body": "Vaste volgorde"
+              },
+              {
+                "id": "2954b47c-08fd-4b96-ac31-58f0d75060ca",
+                "item_body": "Algemeen"
+              }
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "questions": {
+                "shuffled": true
+              }
+            }
+          },
+          "scoring_data": {
+            "value": {
+              "0b9611bf-690f-4d0f-8609-d81da02764d4": "Elke stap kan maar op één manier uitgevoerd worden",
+              "b01c66ec-31bb-42a8-a31d-a0f07a8f607a": "Het algorithm stopt na een eindig aantal stappen",
+              "fa474a5b-be04-4765-b3ff-ad2d04f16b28": "Na elke stap is duidelijk welke stap volgt",
+              "2954b47c-08fd-4b96-ac31-58f0d75060ca": "Het werkt voor elke geldige input"
+            },
+            "edit_data": {
+              "matches": [
+                {
+                  "answer_body": "Elke stap kan maar op één manier uitgevoerd worden",
+                  "question_id": "0b9611bf-690f-4d0f-8609-d81da02764d4",
+                  "question_body": "Ondubbelzinnig"
+                },
+                {
+                  "answer_body": "Het algorithm stopt na een eindig aantal stappen",
+                  "question_id": "b01c66ec-31bb-42a8-a31d-a0f07a8f607a",
+                  "question_body": "Eindig"
+                },
+                {
+                  "answer_body": "Na elke stap is duidelijk welke stap volgt",
+                  "question_id": "fa474a5b-be04-4765-b3ff-ad2d04f16b28",
+                  "question_body": "Vaste volgorde"
+                },
+                {
+                  "answer_body": "Het werkt voor elke geldige input",
+                  "question_id": "2954b47c-08fd-4b96-ac31-58f0d75060ca",
+                  "question_body": "Algemeen"
+                }
+              ],
+              "distractors": []
+            }
+          },
+          "scoring_algorithm": "PartialDeep"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 3,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "numeric",
+          "title": "Vraag 3",
+          "item_body": "<p>Je voert het kaartjesalgoritme uit 1.1 uit met de stapel 6, 2, 8, 2, 4. Hoe vaak krijg je een nieuw kleinste kaartje? Het eerste kaartje in stap 1 telt niet mee.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Alleen bij het eerste kaartje 2 krijg je een nieuw kleinste kaartje. De tweede 2 is niet kleiner dan 2, dus het kleinste kaartje blijft hetzelfde (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_1\" target=\"_blank\">1.1</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {},
+          "properties": {},
+          "scoring_data": {
+            "value": [
+              {
+                "id": "2df52d52-9c41-499b-8e55-d265ed4178b5",
+                "type": "exactResponse",
+                "value": "1"
+              }
+            ]
+          },
+          "scoring_algorithm": "Numeric"
+        }
+      }
+    }
+  ]
+}

@@ -7,6 +7,7 @@
 //   node convert-pdf.js --module 1           only module 1 (comma separated: 1,3)
 //   node convert-pdf.js --published-only     only pages with `published: true` (what `sync.js --with-pdf` uses)
 //   node convert-pdf.js --out handout.pdf    other output path
+//   node convert-pdf.js --json               JSON events on stdout instead of the human log (README "Machine-readable output")
 //
 // Layout: cover, table of contents (with page numbers), then per module: the module text followed
 // by its exercises. "Test jezelf" blocks become questions as text, without answers or feedback.
@@ -21,6 +22,7 @@ const { createRenderer, slugify, esc } = require('./lib/render');
 const { parseQuiz } = require('./lib/quiz');
 const { renderQuizText } = require('./lib/pdfquiz');
 const { loadConfig } = require('./lib/config');
+const log = require('./lib/log');
 
 const ROOT = __dirname;
 
@@ -31,15 +33,24 @@ if (require.main === module) {
   const flag = (name) => args.includes(name);
   const opt = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : null);
   if (flag('--help') || flag('-h')) {
-    console.log('node convert-pdf.js [--module 1,2] [--published-only] [--out file.pdf] [--config file.json]');
+    console.log('node convert-pdf.js [--module 1,2] [--published-only] [--out file.pdf] [--config file.json] [--json]');
     process.exit(0);
   }
+  log.configure({ json: flag('--json') });
   generatePdf({
     publishedOnly: flag('--published-only'),
     modules: opt('--module') ? opt('--module').split(',').map((x) => x.trim()) : null,
     out: opt('--out'),
     config: opt('--config'),
-  }).catch((err) => { console.error(err.message || err); process.exit(1); });
+  }).then((r) => {
+    // Human mode already printed the "PDF: ..." line; JSON mode ends with a result event.
+    if (log.isJson()) {
+      log.result({
+        pdfFile: path.relative(ROOT, r.pdfFile).split(path.sep).join('/'), name: r.name, hash: r.hash,
+        pageCount: r.pageCount, parts: r.parts, modules: r.modules,
+      });
+    }
+  }).catch((err) => { log.error(err); process.exit(1); });
 }
 
 // o: { publishedOnly, modules: ['1','3'], out, config }.
@@ -47,6 +58,7 @@ if (require.main === module) {
 // (HTML + image bytes), so callers can skip an upload when it did not change (the PDF itself holds a timestamp).
 async function generatePdf(o = {}) {
   const config = loadConfig(ROOT);
+  log.configure({ contentDir: config.contentDir || 'content' });
   const cfgFile = path.resolve(ROOT, o.config || 'pdf.config.json');
   const fileCfg = fs.existsSync(cfgFile) ? JSON.parse(fs.readFileSync(cfgFile, 'utf8')) : {};
   const cfg = {
@@ -92,10 +104,13 @@ async function generatePdf(o = {}) {
   await renderer.highlight(pages);
 
   const drafts = pages.filter((p) => p.fm.published !== true).length;
-  if (drafts) console.log(`  note: ${drafts} unpublished page(s) are included (use --published-only to leave them out)`);
+  if (drafts) log.note(`  note: ${drafts} unpublished page(s) are included (use --published-only to leave them out)`);
   for (const p of pages) {
     p.raw.split('\n').forEach((line, i) => {
-      if (/\[CONTROLEREN\]|\[NIET GETEST\]/.test(line)) console.warn(`  ! marker ${p.file}:${i + 1}: ${line.trim().slice(0, 80)}`);
+      if (/\[CONTROLEREN\]|\[NIET GETEST\]/.test(line)) {
+        log.warning({ file: log.contentPath(p.file), line: i + 1, code: 'marker-allowed', message: `marker: ${line.trim().slice(0, 80)}` },
+          `  ! marker ${p.file}:${i + 1}: ${line.trim().slice(0, 80)}`);
+      }
     });
   }
 
@@ -103,7 +118,9 @@ async function generatePdf(o = {}) {
   const quizzes = new Map();
   for (const p of pages) for (const q of p.quizzes) {
     const parsed = parseQuiz({ ...q, file: p.file });
-    for (const msg of parsed.problems) if (!/Feedback/.test(msg)) console.warn(`  ! ${msg}`);
+    for (const msg of parsed.problems) {
+      if (!/Feedback/.test(msg)) log.warning({ file: log.contentPath(p.file), line: q.line ?? null, code: 'quiz-invalid', message: msg }, `  ! ${msg}`);
+    }
     quizzes.set(q.key, parsed);
   }
 
@@ -228,7 +245,8 @@ ${chapters}
     fs.writeFileSync(pdfFile, pdf);
     const total = (await pageCount(pdf));
     const nq = [...quizzes.values()].reduce((a, q) => a + q.questions.length, 0);
-    console.log(`PDF: ${total} pages, ${groups.length} module(s), ${pages.length} part(s), ${quizzes.size} quiz(zes) with ${nq} questions (no answers) -> ${path.relative(process.cwd(), pdfFile)}`);
+    log.note(`PDF: ${total} pages, ${groups.length} module(s), ${pages.length} part(s), ${quizzes.size} quiz(zes) with ${nq} questions (no answers) -> ${path.relative(process.cwd(), pdfFile)}`,
+      { step: 'pdf' });
     const h = crypto.createHash('sha256').update(build(numbers));
     for (const f of [...assets].sort()) h.update(f).update(fs.readFileSync(f));
     return { pdfFile, name: path.basename(pdfFile), hash: h.digest('hex'), pageCount: total, parts: pages.length, modules: groups.length };
@@ -242,7 +260,10 @@ ${chapters}
 function resolveImage(src, kind, contentDir, assets) {
   if (!src || /^([a-z][a-z0-9+.-]*:|\/\/|#)/i.test(src)) return src; // http(s), data:, anchors stay as they are
   const abs = path.resolve(kind === 'config' ? ROOT : contentDir, decodeURI(src.split(/[?#]/)[0]));
-  if (!fs.existsSync(abs)) { console.warn(`  ! image not found: ${src}`); return src; }
+  if (!fs.existsSync(abs)) {
+    log.warning({ file: kind === 'config' ? 'course.config.json' : null, code: 'image-missing', message: `image not found: ${src}` }, `  ! image not found: ${src}`);
+    return src;
+  }
   if (assets) assets.add(abs);
   return pathToFileURL(abs).href;
 }
