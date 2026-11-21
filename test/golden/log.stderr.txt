@@ -1,0 +1,3 @@
+  ! marker module-2-concept.md:13: Een DHCP-lease duurt standaard 24 uur. [CONTROLEREN] (page unpublished, allowed)
+  ! module-1.md "Test jezelf 1.4 – Je thuisnetwerk": uses invullen (experimental): check these questions in Canvas after publishing
+  ! module-1.md "Test jezelf 1.6 – Alle vraagtypes": uses dropdown, woordenbank, invullen (experimental): check these questions in Canvas after publishing

@@ -1,0 +1,259 @@
+{
+  "quiz": {
+    "title": "Test jezelf 1.4 – Je thuisnetwerk",
+    "instructions": "<p>Deze test telt niet mee voor je punten. Je kan hem zo vaak maken als je wil. Na het indienen zie je bij elke vraag of je antwoord juist is, met uitleg.</p>",
+    "points_possible": 4,
+    "grading_type": "points",
+    "quiz_settings": {
+      "calculator_type": "none",
+      "one_at_a_time_type": "none",
+      "shuffle_answers": false,
+      "shuffle_questions": false,
+      "has_time_limit": false,
+      "require_student_access_code": false,
+      "multiple_attempts": {
+        "multiple_attempts_enabled": true,
+        "attempt_limit": false,
+        "max_attempts": null,
+        "score_to_keep": "latest",
+        "cooling_period": false
+      },
+      "result_view_settings": {
+        "result_view_restricted": false
+      }
+    }
+  },
+  "items": [
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 1,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "choice",
+          "title": "Vraag 1",
+          "item_body": "<p>Wat test dit commando? Kies één antwoord.</p><pre><code>ping 8.8.8.8</code></pre>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "",
+            "correct": "<p>Goed gedaan.</p>",
+            "incorrect": "<p>Herlees het stuk over ping in 1.4.</p>"
+          },
+          "interaction_data": {
+            "choices": [
+              {
+                "id": "e99a85f9-8cc5-43e5-aff6-2830c8b96c10",
+                "position": 1,
+                "item_body": "<p>Of je verbinding hebt met het internet</p>"
+              },
+              {
+                "id": "357eda73-3006-4088-a921-c52b8b1fcc39",
+                "position": 2,
+                "item_body": "<p>Of je DNS werkt</p>"
+              },
+              {
+                "id": "06527376-71bd-402d-9378-5ad598684d57",
+                "position": 3,
+                "item_body": "<p>Welk IP-adres je eigen computer heeft</p>"
+              },
+              {
+                "id": "cb6126a8-8e8c-4acc-b325-9528fbf0a80d",
+                "position": 4,
+                "item_body": "<p>Hoe snel je wifi is</p>"
+              }
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "choices": {
+                "to_lock": [],
+                "shuffled": true
+              }
+            },
+            "vary_points_by_answer": false
+          },
+          "scoring_data": {
+            "value": "e99a85f9-8cc5-43e5-aff6-2830c8b96c10"
+          },
+          "scoring_algorithm": "Equivalence",
+          "answer_feedback": {
+            "e99a85f9-8cc5-43e5-aff6-2830c8b96c10": "<p>Juist. <code>8.8.8.8</code> is een publiek IP-adres buiten je eigen netwerk (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "357eda73-3006-4088-a921-c52b8b1fcc39": "<p>Een IP-adres heeft geen DNS nodig. Ping een domeinnaam om DNS te testen (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_6\" target=\"_blank\">1.6</a>).</p>",
+            "06527376-71bd-402d-9378-5ad598684d57": "<p>Daarvoor gebruik je <code>ipconfig</code>, <code>ip a</code> of <code>ifconfig</code> (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "cb6126a8-8e8c-4acc-b325-9528fbf0a80d": "<p><code>ping</code> meet de tijd tot een antwoord, niet de snelheid van je wifi (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_5\" target=\"_blank\">1.5</a>).</p>"
+          }
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 2,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "matching",
+          "title": "Vraag 2",
+          "item_body": "<p>Koppel elk besturingssysteem aan het commando dat je IP-adres toont.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Zie de lijst in <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>.</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "answers": [
+              "ipconfig",
+              "ip a",
+              "ifconfig",
+              "ping"
+            ],
+            "questions": [
+              {
+                "id": "cae36a9b-66be-4476-9ead-45117ce8c4d2",
+                "item_body": "Windows"
+              },
+              {
+                "id": "2a9054f2-0cdd-48ec-a071-755e57e182f4",
+                "item_body": "Linux"
+              },
+              {
+                "id": "db6ecef3-d491-4fee-b76c-d36e91e8cf41",
+                "item_body": "macOS"
+              }
+            ]
+          },
+          "properties": {
+            "shuffle_rules": {
+              "questions": {
+                "shuffled": true
+              }
+            }
+          },
+          "scoring_data": {
+            "value": {
+              "cae36a9b-66be-4476-9ead-45117ce8c4d2": "ipconfig",
+              "2a9054f2-0cdd-48ec-a071-755e57e182f4": "ip a",
+              "db6ecef3-d491-4fee-b76c-d36e91e8cf41": "ifconfig"
+            },
+            "edit_data": {
+              "matches": [
+                {
+                  "answer_body": "ipconfig",
+                  "question_id": "cae36a9b-66be-4476-9ead-45117ce8c4d2",
+                  "question_body": "Windows"
+                },
+                {
+                  "answer_body": "ip a",
+                  "question_id": "2a9054f2-0cdd-48ec-a071-755e57e182f4",
+                  "question_body": "Linux"
+                },
+                {
+                  "answer_body": "ifconfig",
+                  "question_id": "db6ecef3-d491-4fee-b76c-d36e91e8cf41",
+                  "question_body": "macOS"
+                }
+              ],
+              "distractors": [
+                "ping"
+              ]
+            }
+          },
+          "scoring_algorithm": "PartialDeep"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 3,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "numeric",
+          "title": "Vraag 3",
+          "item_body": "<p>Een ping naar je router geeft <code>time=2.104 ms</code>. Rond af op één decimaal.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>2,104 afgerond op één decimaal is 2,1 (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {},
+          "properties": {},
+          "scoring_data": {
+            "value": [
+              {
+                "id": "f849f693-82b9-4e13-b690-d9760c475e71",
+                "type": "marginOfError",
+                "value": "2.1",
+                "margin": "0.05",
+                "margin_type": "absolute"
+              },
+              {
+                "id": "c8c8fdd4-6bc0-4b14-a499-0b725f5aea69",
+                "type": "exactResponse",
+                "value": "2.1"
+              }
+            ]
+          },
+          "scoring_algorithm": "Numeric"
+        }
+      }
+    },
+    {
+      "item": {
+        "entry_type": "Item",
+        "position": 4,
+        "points_possible": 1,
+        "entry": {
+          "interaction_type_slug": "rich-fill-blank",
+          "title": "Vraag 4",
+          "item_body": "<p>Het standaard gateway-adres van de meeste routers is <span id=\"blank_8ab945df-690a-4897-bc36-17441fb6aca6\"></span>.</p>",
+          "calculator_type": "none",
+          "feedback": {
+            "neutral": "<p>Beide adressen komen veel voor (zie <a href=\"https://canvas.ehb.be/courses/43147/pages/module-1-hoe-komt-het-dat-niet-iedereen-aan-mijn-netwerk-kan#1_4\" target=\"_blank\">1.4</a>).</p>",
+            "correct": "",
+            "incorrect": ""
+          },
+          "interaction_data": {
+            "blanks": [
+              {
+                "id": "8ab945df-690a-4897-bc36-17441fb6aca6",
+                "answer_type": "openEntry"
+              }
+            ],
+            "word_bank_choices": [],
+            "reuse_word_bank_choices": false
+          },
+          "properties": {
+            "shuffle_rules": {
+              "blanks": {
+                "children": {
+                  "0": {
+                    "children": null
+                  }
+                }
+              }
+            }
+          },
+          "scoring_data": {
+            "value": [
+              {
+                "id": "8ab945df-690a-4897-bc36-17441fb6aca6",
+                "scoring_data": {
+                  "value": [
+                    "192.168.1.1",
+                    "192.168.0.1"
+                  ],
+                  "blank_text": "192.168.1.1"
+                },
+                "scoring_algorithm": "TextInChoices"
+              }
+            ],
+            "working_item_body": "<p>Het standaard gateway-adres van de meeste routers is `192.168.1.1`.</p>"
+          },
+          "scoring_algorithm": "MultipleMethods"
+        }
+      }
+    }
+  ]
+}
