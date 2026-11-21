@@ -7,7 +7,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 
 const TOOL = path.resolve(__dirname, '..');
 
@@ -58,6 +58,18 @@ function makeProject(o = {}) {
       });
       if (r.error) throw r.error;
       return { status: r.status, stdout: r.stdout, stderr: r.stderr };
+    },
+    /** Same as run, without blocking the event loop (needed when a fake server runs in this process). */
+    runAsync(args = [], script = 'sync.js', env = {}) {
+      return new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, [script, ...args], { cwd: dir, env: { ...baseEnv, ...env } });
+        let stdout = '';
+        let stderr = '';
+        child.stdout.setEncoding('utf8').on('data', (d) => { stdout += d; });
+        child.stderr.setEncoding('utf8').on('data', (d) => { stderr += d; });
+        child.on('error', reject);
+        child.on('close', (status) => resolve({ status, stdout, stderr }));
+      });
     },
     read(rel) { return fs.readFileSync(path.join(dir, rel), 'utf8'); },
     exists(rel) { return fs.existsSync(path.join(dir, rel)); },
